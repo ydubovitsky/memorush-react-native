@@ -1,28 +1,25 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import DataTableComponent from "./components/data-table.component";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React from "react";
 import SettingsScreen from "../settings/settings.screen";
-import { getAllCardSets, cardEntitySelector } from "../../redux/features/card-set/card-set.slice";
+import ListAccordionComponent from './components/list-accordion.component';
+import { Text, View } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 const Tab = createBottomTabNavigator();
 
 const MainScreen = () => {
 
-  const dispatch = useDispatch();
-  const cardEntity = useSelector(cardEntitySelector);
-
-  useEffect(() => {
-    dispatch(getAllCardSets());
-    console.log(cardEntity);
-  }, [])
-
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="CardSet" component={DataTableComponent} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
-    </Tab.Navigator>
-
+    <SafeAreaProvider>
+      <SafeAreaView
+        style={{ flex: 1, justifyContent: 'space-between' }}
+      >
+        <Tab.Navigator screenOptions={{ headerShown: false }}>
+          <Tab.Screen name="CardSet" component={ListAccordionComponent} />
+          <Tab.Screen name="Settings" component={SettingsScreen} />
+        </Tab.Navigator>
+      </SafeAreaView>
+    </SafeAreaProvider>
   )
 }
 
