@@ -90,6 +90,7 @@ const CardSetDetailsTabNavigation = (args) => {
       <Tab.Screen
         name="Learn"
         component={LearnCardSetScreen}
+        initialParams={{ cardSetId }}
         options={{
           tabBarIcon: () => (
             <Icon
