@@ -9,6 +9,8 @@ import StartLoaderScreen from '../screens/start-loader/start-loader.screen';
 import ImgBackgroundComponent from '../common/components/img-background/img-background.component';
 import CardSetDetailsScreen from '../screens/card-set-details/card-set-details.screen';
 import LearnCardSetScreen from '../screens/learn-card-set/learn-card-set.screen';
+import EditCardSetScreen from '../screens/edit-card-set/edit-card-set.screen';
+import CardSetInfoScreen from '../screens/card-set-info/card-set-info.screen';
 import { Icon } from 'react-native-elements'
 
 const Stack = createNativeStackNavigator();
@@ -104,7 +106,7 @@ const CardSetDetailsTabNavigation = (args) => {
       />
       <Tab.Screen
         name="Edit"
-        component={LearnCardSetScreen}
+        component={EditCardSetScreen}
         options={{
           tabBarIcon: () => (
             <Icon
@@ -118,7 +120,7 @@ const CardSetDetailsTabNavigation = (args) => {
       />
       <Tab.Screen
         name="Info"
-        component={LearnCardSetScreen}
+        component={CardSetInfoScreen}
         options={{
           tabBarIcon: () => (
             <Icon
