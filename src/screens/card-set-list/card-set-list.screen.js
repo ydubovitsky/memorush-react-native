@@ -19,10 +19,26 @@ const CardSetListScreen = (props) => {
     dispatch(getAllCardSets());
   }, []);
 
+  const showCardsElement = () => (
+    toggleCardsView ?
+      <FlatList
+        data={cardEntity}
+        renderItem={({ item }) => <CardSetListItem item={item} navigation={props.navigation} />}
+        keyExtractor={item => item.id}
+      />
+      :
+      <CardSetTableComponent
+        navigation={props.navigation}
+        cardEntity={cardEntity}
+      />
+  )
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
       <ImgBackgroundComponent>
-        <AppbarComponent cardViewToggleHandler={() => setToggleCardsView(!toggleCardsView)} />
+        <AppbarComponent
+          cardViewToggleHandler={() => setToggleCardsView(!toggleCardsView)}
+        />
         <View style={styles.favoritesList}>
           <FlatList
             data={cardEntity}
@@ -32,15 +48,7 @@ const CardSetListScreen = (props) => {
           />
         </View>
         <View style={styles.cardSetListContainer}>
-          {/* //!TODO Вынести в функцию */}
-          {toggleCardsView ?
-            <FlatList
-              data={cardEntity}
-              renderItem={({ item }) => <CardSetListItem item={item} navigation={props.navigation} />}
-              keyExtractor={item => item.id}
-            /> :
-            <CardSetTableComponent />
-          }
+          {showCardsElement()}
         </View>
       </ImgBackgroundComponent>
     </SafeAreaView>
