@@ -80,8 +80,8 @@ const CardSetDetailsTabNavigation = (args) => {
           tabBarIcon: () => (
             //TODO Иконку поменять!
             <Icon
-              name='book'
-              type='font-awesome'
+              name='book-outline'
+              type='ionicon'
               color='silver'
               size={30}
             />
@@ -95,6 +95,34 @@ const CardSetDetailsTabNavigation = (args) => {
             <Icon
               name='school'
               type='material'
+              color='silver'
+              size={30}
+            />
+          )
+        }}
+      />
+      <Tab.Screen
+        name="Edit"
+        component={LearnCardSetScreen}
+        options={{
+          tabBarIcon: () => (
+            <Icon
+              name='create-outline'
+              type='ionicon'
+              color='silver'
+              size={30}
+            />
+          )
+        }}
+      />
+      <Tab.Screen
+        name="Info"
+        component={LearnCardSetScreen}
+        options={{
+          tabBarIcon: () => (
+            <Icon
+              name='information-circle-outline'
+              type='ionicon'
               color='silver'
               size={30}
             />

@@ -15,8 +15,8 @@ const AppbarComponent = ({ navigateToCardScreen }) => {
       <View style={styles.container}>
         <View style={styles.arrowLeftContainer}>
           <Icon
-            name='arrow-left'
-            type='font-awesome'
+            name='arrow-back-outline'
+            type='ionicon'
             onPress={navigateToCardScreen}
           />
         </View>
