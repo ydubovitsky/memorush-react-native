@@ -1,9 +1,12 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text } from "react-native"
+import ImgBackgroundComponent from "../../common/components/img-background/img-background.component";
 
 const SettingsScreen = () => {
   return (
-    <Text>Settings</Text>
+    <ImgBackgroundComponent>
+      <Text>Settings</Text>
+    </ImgBackgroundComponent>
   )
 }
 

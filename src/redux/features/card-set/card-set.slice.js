@@ -70,6 +70,7 @@ export const cardEntityByFavoriteAndLearnedSelector = (state, favorite, learned)
   if ((favorite === false) && (learned === true)) return learnedCards;
   return state.card.cardEntity;
 }
+export const cardSetByIdSelector = (state, id) => state.cardSet.cardEntity.find(cardSet => id === cardSet.id);
 
 //TODO Сделать более универсальным
 export const getSortedCardByCardSetSelector = state => {

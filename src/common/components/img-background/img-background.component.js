@@ -1,11 +1,15 @@
 import React from "react";
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
+import { ImageBackground, StyleSheet, View } from "react-native";
 
-const image = { uri: "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" };
+const IMG_PATH = "../../../../assets/images/background_two.jpg"
 
 const ImgBackgroundComponent = (props) => (
   <View style={styles.container}>
-    <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+    <ImageBackground
+      source={require(IMG_PATH)}
+      resizeMode="stretch"
+      style={styles.image}
+    >
       {props.children}
     </ImageBackground>
   </View>
@@ -17,7 +21,7 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    justifyContent: "center"
+    justifyContent: "center",
   }
 });
 
