@@ -8,12 +8,12 @@ const CardSetListItem = ({ item, navigation }) => (
   <TouchableOpacity
     style={styles.container}
     onPress={() => navigation.navigate(
-      "CardDetailsScreen",
+      "CardSetDetailsTabNavigation",
       {
         cardSetId: item.id,
+        cardSetName: item.name
       })}
   >
-    {console.log(item)}
     <View style={styles.description}>
       <ImageBackground
         source={require(DEFAULT_IMAGE_PATH)}
@@ -37,7 +37,6 @@ const CardSetListItem = ({ item, navigation }) => (
         type='font-awesome'
         color='#f50'
         size={10}
-        onPress={() => console.log('heart')}
       />
     </View>
   </TouchableOpacity>

@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSelector } from "react-redux";
 import ImgBackgroundComponent from "../../common/components/img-background/img-background.component";
@@ -12,8 +12,6 @@ const CardSetDetailsScreen = ({ route, navigation }) => {
   const { cardSetId } = route.params;
   const cardSet = useSelector(state => cardByIdSelector(state, cardSetId));
 
-  console.log(cardSet);
-
   const navigateToCardScreen = () => {
     navigation.navigate("Cards");
   }
@@ -22,14 +20,23 @@ const CardSetDetailsScreen = ({ route, navigation }) => {
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
       <ImgBackgroundComponent>
         <AppbarComponent navigateToCardScreen={navigateToCardScreen} />
-        <FlatList
-          data={cardSet.cardList}
-          renderItem={({ item }) => <CardItemComponent item={item} navigation={navigation} />}
-          keyExtractor={item => item.id}
-        />
+        <View style={styles.cardSetListContainer}>
+          <FlatList
+            data={cardSet.cardList}
+            renderItem={({ item }) => <CardItemComponent item={item} navigation={navigation} />}
+            keyExtractor={item => item.id}
+          />
+        </View>
       </ImgBackgroundComponent>
     </SafeAreaView>
   )
 }
+
+const styles = StyleSheet.create({
+  cardSetListContainer: {
+    padding: 10,
+    flex: 1
+  }
+})
 
 export default CardSetDetailsScreen;

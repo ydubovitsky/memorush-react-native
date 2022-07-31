@@ -49,7 +49,6 @@ const CardItemComponent = ({ item, navigation }) => {
           type='font-awesome'
           color='red'
           size={15}
-          onPress={() => console.log('heart')}
         />
       </View>
     </TouchableOpacity>
