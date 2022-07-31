@@ -1,49 +1,60 @@
 import * as React from 'react';
 import { ImageBackground, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
-import SpeakComponent from '../../service/speachService';
+import SpeakerIconComponent from '../../common/components/speaker-icon/speaker-icon.component';
 
 const DEFAULT_IMAGE_PATH = "../../../assets/images/flash-card-set-cover-one.jpg";
 
-const CardItemComponent = ({ item, navigation }) => (
-  <TouchableOpacity
-    style={styles.container}
-  // onPress={() => navigation.navigate(
-  //   "CardDetailsScreen",
-  //   {
-  //     cardSetId: item.id,
-  //   })}
-  >
-    {console.log(item)}
-    <View style={styles.description}>
-      <ImageBackground
-        source={require(DEFAULT_IMAGE_PATH)}
-        resizeMode="cover"
-        imageStyle={{
-          borderTopRightRadius: 20,
-          borderTopLeftRadius: 20
-        }}
-        style={styles.image}
-      >
-        <Text style={styles.text}>{item.frontSide}</Text>
-      </ImageBackground>
-    </View>
-    <View style={styles.info}>
-      {/* <Text>{item.description}</Text> */}
-      {/* <Text>Cards count: {item.cardList.length}</Text> */}
-      {/* <Text>Created: {item.createdAt}</Text> */}
-      <SpeakComponent text={item.frontSide}/>
-      <Icon
-        raised
-        name='heartbeat'
-        type='font-awesome'
-        color='#f50'
-        size={10}
-        onPress={() => console.log('heart')}
-      />
-    </View>
-  </TouchableOpacity>
-);
+const CardItemComponent = ({ item, navigation }) => {
+
+  const [isFrontSide, setIsFrontSide] = React.useState(true);
+
+  const changeCardSideHandler = () => {
+    setIsFrontSide(!isFrontSide);
+  }
+
+  const navigateHandler = () => {
+    navigation.navigate(
+      "CardDetailsScreen",
+      {
+        cardSetId: item.id,
+      })
+  }
+
+  return (
+    <TouchableOpacity
+      style={styles.container}
+      onPress={changeCardSideHandler}
+    >
+      <View style={styles.description}>
+        <ImageBackground
+          source={require(DEFAULT_IMAGE_PATH)}
+          resizeMode="cover"
+          imageStyle={{
+            borderTopRightRadius: 20,
+            borderTopLeftRadius: 20
+          }}
+          style={styles.image}
+        >
+          <Text style={styles.text}>{isFrontSide ? item.frontSide : item.backSide}</Text>
+        </ImageBackground>
+      </View>
+      <View style={styles.info}>
+        {/* <Text>{item.description}</Text> */}
+        {/* <Text>Cards count: {item.cardList.length}</Text> */}
+        {/* <Text>Created: {item.createdAt}</Text> */}
+        <SpeakerIconComponent text={item.frontSide} />
+        <Icon
+          name='heart'
+          type='font-awesome'
+          color='red'
+          size={15}
+          onPress={() => console.log('heart')}
+        />
+      </View>
+    </TouchableOpacity>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {

@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import ImgBackgroundComponent from "../../common/components/img-background/img-background.component";
 import CardItemComponent from "../../components/card-set-details/card-item.component";
 import { cardByIdSelector } from "../../redux/features/card-set/card-set.slice";
+import AppbarComponent from "../../components/card-set-details/app-bar.component";
 
 const CardSetDetailsScreen = ({ route, navigation }) => {
 
@@ -13,9 +14,14 @@ const CardSetDetailsScreen = ({ route, navigation }) => {
 
   console.log(cardSet);
 
+  const navigateToCardScreen = () => {
+    navigation.navigate("Cards");
+  }
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
       <ImgBackgroundComponent>
+        <AppbarComponent navigateToCardScreen={navigateToCardScreen} />
         <FlatList
           data={cardSet.cardList}
           renderItem={({ item }) => <CardItemComponent item={item} navigation={navigation} />}
