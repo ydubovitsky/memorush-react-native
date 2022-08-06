@@ -5,8 +5,9 @@ const ButtonComponent = ({ style, name, onClickHandler }) => {
   return (
     <TouchableOpacity
       style={[styles.container, style]}
+      onPress={onClickHandler}
     >
-      <Text onPress={onClickHandler} style={styles.signIn}>{name}</Text>
+      <Text style={styles.signIn}>{name}</Text>
     </TouchableOpacity>
   );
 }
