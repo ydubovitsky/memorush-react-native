@@ -11,6 +11,7 @@ import CardSetDetailsScreen from '../screens/card-set-details/card-set-details.s
 import LearnCardSetScreen from '../screens/learn-card-set/learn-card-set.screen';
 import EditCardSetScreen from '../screens/edit-card-set/edit-card-set.screen';
 import CardSetInfoScreen from '../screens/card-set-info/card-set-info.screen';
+import RegistrationScreen from '../screens/registration/registration.screen';
 import { Icon } from 'react-native-elements'
 
 const Stack = createNativeStackNavigator();
@@ -22,6 +23,7 @@ const MainStackNavigator = () => (
       <Stack.Navigator initialRouteName="StartLoaderScreen" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="StartLoaderScreen" component={StartLoaderScreen} />
         <Stack.Screen name="SignInScreen" component={SignInScreen} />
+        <Stack.Screen name="RegistrationScreen" component={RegistrationScreen} />
         {/* //! Inner navigation below*/}
         <Stack.Screen name="MainTabNavigation" component={MainTabNavigation} />
         <Stack.Screen name="CardSetDetailsTabNavigation" component={CardSetDetailsTabNavigation} />

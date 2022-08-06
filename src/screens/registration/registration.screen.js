@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ImgBackgroundComponent from "../../common/components/img-background/img-background.component";
 import ButtonComponent from "../../components/sign-in/button.component";
 import TextInputComponent from "../../components/sign-in/text-input.component";
-import { authSelector, login } from "../../redux/features/auth/auth-slice";
+import { authSelector, registration } from "../../redux/features/auth/auth-slice";
 import { useSelector, useDispatch } from "react-redux";
 
 const IMAGE_PATH = "../../../assets/images/logo.png";
 
-const SignInScreen = (props) => {
+const RegistrationScreen = (props) => {
 
   const dispatch = useDispatch();
   const [formData, setFormData] = useState();
   const { authEntity, error, status } = useSelector(authSelector);
 
   useEffect(() => {
-    if (status === "login") {
-      props.navigation.navigate("MainTabNavigation");
+    if (status === "register") {
+      props.navigation.navigate("SignInScreen");
     }
   }, [status])
 
@@ -28,8 +28,8 @@ const SignInScreen = (props) => {
     })
   }
 
-  const onLoginFormHandler = () => {
-    dispatch(login(formData));
+  const onRegisterFormHandler = () => {
+    dispatch(registration(formData));
   }
 
   return (
@@ -57,27 +57,35 @@ const SignInScreen = (props) => {
               style={styles.materialStackedLabelTextbox3}
             >
             </TextInputComponent>
+            <TextInputComponent
+              placeholder="Confirm password"
+              name="password2"
+              formInputHandler={formInputHandler}
+              style={styles.materialStackedLabelTextbox3}
+            >
+            </TextInputComponent>
+            <TextInputComponent
+              placeholder="Email"
+              name="email"
+              formInputHandler={formInputHandler}
+              style={styles.materialStackedLabelTextbox3}
+            >
+            </TextInputComponent>
           </View>
           <View style={styles.buttonsContainer}>
             <ButtonComponent
               style={styles.button}
-              name="Sign In"
-              onClickHandler={onLoginFormHandler}
+              name="Register"
+              onClickHandler={onRegisterFormHandler}
             >
             </ButtonComponent>
             <ButtonComponent
               style={styles.button}
-              name="Try it without registration"
-              onClickHandler={() => props.navigation.navigate("MainTabNavigation")}
+              name="Go back"
+              onClickHandler={() => props.navigation.navigate("SignInScreen")}
             >
             </ButtonComponent>
           </View>
-          <TouchableOpacity
-            style={styles.textContainer}
-            onPress={() => props.navigation.navigate("RegistrationScreen")}
-          >
-            <Text style={styles.text}>Don`t have account? Sign up!</Text>
-          </TouchableOpacity>
         </View>
       </SafeAreaView>
     </ImgBackgroundComponent>
@@ -130,4 +138,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default SignInScreen;
+export default RegistrationScreen;
