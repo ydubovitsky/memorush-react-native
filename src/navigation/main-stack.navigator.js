@@ -11,6 +11,7 @@ import CardSetDetailsScreen from '../screens/card-set-details/card-set-details.s
 import LearnCardSetScreen from '../screens/learn-card-set/learn-card-set.screen';
 import EditCardSetScreen from '../screens/edit-card-set/edit-card-set.screen';
 import CardSetInfoScreen from '../screens/card-set-info/card-set-info.screen';
+import DashboardScreen from '../screens/dashboard/dashboard.screen';
 import RegistrationScreen from '../screens/registration/registration.screen';
 import { Icon } from 'react-native-elements'
 
@@ -43,6 +44,19 @@ const MainTabNavigation = () => (
         tabBarIcon: () => (
           <Icon
             name='style'
+            type='material'
+            color='silver'
+            size={30}
+          />
+        )
+      }} />
+    <Tab.Screen
+      name="Dashboard"
+      component={DashboardScreen}
+      options={{
+        tabBarIcon: () => (
+          <Icon
+            name='dashboard'
             type='material'
             color='silver'
             size={30}
