@@ -8,6 +8,8 @@ import CardSetListItem from "../../components/card-set-list/card-set-list-item/c
 import CardSetTableComponent from "../../components/card-set-list/card-set-table/card-set-table.component";
 import FavoritesSetListItem from "../../components/card-set-list/favorites-set-list-item/favorites-set-list-item";
 import { cardEntitySelector, getAllCardSets } from "../../redux/features/card-set/card-set.slice";
+import FABGroupComponent from "../../components/card-set-list/FAB-group/FAB-group.component";
+import { FAB, Portal, Provider } from 'react-native-paper';
 
 const CardSetListScreen = (props) => {
 
@@ -50,6 +52,7 @@ const CardSetListScreen = (props) => {
         <View style={styles.cardSetListContainer}>
           {showCardsElement()}
         </View>
+        <FABGroupComponent />
       </ImgBackgroundComponent>
     </SafeAreaView>
   )
