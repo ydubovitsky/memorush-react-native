@@ -1,15 +1,83 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import fetchDataService from "../../../service/fetchDataService";
+import { BASE_URL } from "../../const/url-endpoints.const";
 
 // -------------------------------------- AsyncThunk --------------------------------------
 
-export const getAllCardSets = createAsyncThunk('cardSet/getAllCardSets', async () => {
-  const response = await fetchDataService('GET', '/api/v1/card-set/all');
+export const getAllCardSets = createAsyncThunk('card/getAllCardSets', async (arg, { getState }) => {
+  const state = getState();
+  const token = state.auth.authEntity.token;
+
+  const payload = {
+    method: 'GET',
+    url: `${BASE_URL}/api/v1/card-set/all`,
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': token
+    }
+  }
+  const response = await fetchDataService(payload);
   return response.data;
 })
 
-export const createNewCardSet = createAsyncThunk('cardSet/create', async (data) => {
-  const response = await fetchDataService('POST', '/api/v1/card-set/add', data);
+export const createNewCardSet = createAsyncThunk('card/create', async (arg, { getState }) => {
+  const state = getState();
+  const token = state.auth.authEntity.token;
+
+  const payload = {
+    method: 'POST',
+    url: `${BASE_URL}/api/v1/card-set/add`,
+    data: {
+      ...arg,
+      flashCardArray: Object.values(arg.flashCardArray)
+    },
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': token
+    }
+  }
+  const response = await fetchDataService(payload);
+  return response.data;
+})
+
+export const updateCardSet = createAsyncThunk('card/update', async (arg, { getState }) => {
+  const state = getState();
+  const token = state.auth.authEntity.token;
+  const { cardSetId, cardSetEntity } = arg;
+
+  const payload = {
+    method: 'PUT',
+    url: `${BASE_URL}/api/v1/card-set/update/${cardSetId}`,
+    data: {
+      ...cardSetEntity,
+      flashCardArray: Object.values(cardSetEntity.flashCardArray)
+    },
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': token
+    }
+  }
+  const response = await fetchDataService(payload);
+  return response.data;
+})
+
+export const deleteCardSet = createAsyncThunk('card/delete', async (id, { getState }) => {
+  const state = getState();
+  const token = state.auth.authEntity.token;
+
+  const payload = {
+    method: 'DELETE',
+    url: `${BASE_URL}/api/v1/card-set/delete/${id}`,
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': token
+    }
+  }
+  const response = await fetchDataService(payload);
   return response.data;
 })
 

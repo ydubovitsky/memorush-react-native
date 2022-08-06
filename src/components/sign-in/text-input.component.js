@@ -1,17 +1,15 @@
 import React from "react";
 import { StyleSheet, TextInput } from "react-native";
 
-const TextInputComponent = (props) => {
+const TextInputComponent = ({placeholder, formInputHandler, name}) => {
 
-  const [text, onChangeText] = React.useState();
 
   return (
       <TextInput
         style={styles.input}
-        onChangeText={onChangeText}
-        placeholder={props.placeholder}
+        onChangeText={(text) => formInputHandler({name, value: text})}
+        placeholder={placeholder}
         placeholderTextColor="white" 
-        value={text}
       />
   );
 }
