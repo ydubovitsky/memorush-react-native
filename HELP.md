@@ -20,3 +20,6 @@ https://docs.expo.dev/versions/latest/sdk/speech/
 
 ### Icons
 https://reactnativeelements.com/docs/1.2.0/icon
+
+### Free logo maker
+https://www.adobe.com/express/create/logo

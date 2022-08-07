@@ -1,5 +1,5 @@
-import React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import React, {useEffect} from "react";
+import { StyleSheet, View, Image } from "react-native";
 
 const IMAGE_PATH="../../../assets/images/logo/start-loader.png"
 
