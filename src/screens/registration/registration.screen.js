@@ -43,6 +43,7 @@ const RegistrationScreen = (props) => {
             />
           </View>
           <View style={styles.inputTextContainer}>
+            <Text>Username</Text>
             <TextInputComponent
               placeholder="Username"
               name="username"
@@ -50,6 +51,7 @@ const RegistrationScreen = (props) => {
               style={styles.materialStackedLabelTextbox2}
             >
             </TextInputComponent>
+            <Text>Password</Text>
             <TextInputComponent
               placeholder="Password"
               name="password"
@@ -57,6 +59,7 @@ const RegistrationScreen = (props) => {
               style={styles.materialStackedLabelTextbox3}
             >
             </TextInputComponent>
+            <Text>Password confirmation</Text>
             <TextInputComponent
               placeholder="Confirm password"
               name="password2"
@@ -64,6 +67,7 @@ const RegistrationScreen = (props) => {
               style={styles.materialStackedLabelTextbox3}
             >
             </TextInputComponent>
+            <Text>Email(Optional)</Text>
             <TextInputComponent
               placeholder="Email"
               name="email"
@@ -110,7 +114,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   inputTextContainer: {
-    flex: 2,
+    flex: 4,
     flexDirection: "column",
     justifyContent: "center",
     justifyContent: 'space-around',

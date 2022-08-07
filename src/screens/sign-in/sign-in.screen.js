@@ -43,6 +43,7 @@ const SignInScreen = (props) => {
             />
           </View>
           <View style={styles.inputTextContainer}>
+            <Text>Username</Text>
             <TextInputComponent
               placeholder="Username"
               name="username"
@@ -50,6 +51,7 @@ const SignInScreen = (props) => {
               style={styles.materialStackedLabelTextbox2}
             >
             </TextInputComponent>
+            <Text>Password</Text>
             <TextInputComponent
               placeholder="Password"
               name="password"
