@@ -36,7 +36,7 @@ const SignInScreen = (props) => {
     <ImgBackgroundComponent>
       <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.container}>
-          <View style={styles.ellipseContainer}>
+          <View style={styles.logoContainer}>
             <Image
               style={styles.tinyLogo}
               source={require(IMAGE_PATH)}
@@ -67,17 +67,11 @@ const SignInScreen = (props) => {
             </ButtonComponent>
             <ButtonComponent
               style={styles.button}
-              name="Try it without registration"
-              onClickHandler={() => props.navigation.navigate("MainTabNavigation")}
+              name="Registration"
+              onClickHandler={() => props.navigation.navigate("RegistrationScreen")}
             >
             </ButtonComponent>
           </View>
-          <TouchableOpacity
-            style={styles.textContainer}
-            onPress={() => props.navigation.navigate("RegistrationScreen")}
-          >
-            <Text style={styles.text}>Don`t have account? Sign up!</Text>
-          </TouchableOpacity>
         </View>
       </SafeAreaView>
     </ImgBackgroundComponent>
@@ -89,8 +83,8 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: "10%",
   },
-  ellipseContainer: {
-    flex: 3,
+  logoContainer: {
+    flex: 5,
     width: "100%",
     height: "100%",
     alignContent: "center",
@@ -111,7 +105,7 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     flex: 2,
     flexDirection: "column",
-    justifyContent: "center",
+    justifyContent: "flex-end",
     justifyContent: 'space-around'
   },
   textContainer: {
