@@ -1,5 +1,7 @@
-import React, {useEffect} from "react";
-import { StyleSheet, View, Image } from "react-native";
+import React from "react";
+import { Image, StyleSheet, View } from "react-native";
+
+const IMAGE_PATH="../../../assets/images/logo/start-loader.png"
 
 const StartLoaderScreen = (props) => {
 
@@ -10,7 +12,7 @@ const StartLoaderScreen = (props) => {
   return (
     <View style={styles.container}>
       <Image
-        source={require("../../../assets/images/start-loader.png")}
+        source={require(IMAGE_PATH)}
         resizeMode="contain"
         style={styles.image}
       ></Image>

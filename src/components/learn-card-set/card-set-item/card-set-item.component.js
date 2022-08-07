@@ -3,7 +3,7 @@ import { ImageBackground, StyleSheet, Text, View, TouchableOpacity } from 'react
 import { Icon } from 'react-native-elements';
 import SpeakerIconComponent from '../../../common/components/speaker-icon/speaker-icon.component';
 
-const DEFAULT_IMAGE_PATH = "../../../../assets/images/flash-card-set-cover-one.jpg";
+const DEFAULT_IMAGE_PATH = "../../../../assets/images/flash-card-set/flash-card-set-cover-one.jpg";
 
 const CardSetItemComponent = ({ item = {} }) => {
 

@@ -1,7 +1,6 @@
-import * as React from 'react';
-import { View, StyleSheet, Button } from 'react-native';
 import * as Speech from 'expo-speech';
-import { Icon } from 'react-native-elements'
+import * as React from 'react';
+import { Icon } from 'react-native-elements';
 
 const SpeakerIconComponent = ({ text }) => {
   const speak = () => {

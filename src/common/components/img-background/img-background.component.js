@@ -1,7 +1,7 @@
 import React from "react";
 import { ImageBackground, StyleSheet, View } from "react-native";
 
-const IMG_PATH = "../../../../assets/images/background_two.jpg"
+const IMG_PATH = "../../../../assets/images/backgrounds/background_three.jpg"
 
 const ImgBackgroundComponent = (props) => (
   <View style={styles.container}>

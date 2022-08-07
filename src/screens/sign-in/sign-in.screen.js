@@ -7,7 +7,7 @@ import TextInputComponent from "../../components/sign-in/text-input.component";
 import { authSelector, login } from "../../redux/features/auth/auth-slice";
 import { useSelector, useDispatch } from "react-redux";
 
-const IMAGE_PATH = "../../../assets/images/logo.png";
+const IMAGE_PATH = "../../../assets/images/logo/logo.png";
 
 const SignInScreen = (props) => {
 

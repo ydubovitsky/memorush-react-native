@@ -1,7 +1,7 @@
 import React from "react";
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
 
-const DEFAULT_IMAGE_PATH = "../../../../assets/images/flash-card-set-cover-one.jpg";
+const DEFAULT_IMAGE_PATH = "../../../../assets/images/flash-card-set/jukebox-print-FUohNQatzVs-unsplash.jpg";
 
 const FavoritesSetListItem = () => (
   <View
