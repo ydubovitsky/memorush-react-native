@@ -20,10 +20,10 @@ const INIT_CARD_SET_STATE = {
   flashCardArray: {}
 }
 
-const DashboardScreen = (props) => {
+const CardSetEditScreen = (props) => {
 
   //! Читаем входные параметры
-  const { cardSetId } = props.route.params;
+  const cardSetId  = props.route.params?.cardSetId;
 
   const dispatch = useDispatch();
   // Init state for card set
@@ -169,4 +169,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default DashboardScreen;
+export default CardSetEditScreen;

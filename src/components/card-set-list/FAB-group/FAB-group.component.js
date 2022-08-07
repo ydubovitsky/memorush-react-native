@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { FAB, Portal, Provider } from 'react-native-paper';
 
-const FABGroupComponent = () => {
+const FABGroupComponent = ({ navigation }) => {
 
   const [state, setState] = React.useState({ open: false });
 
@@ -15,24 +15,13 @@ const FABGroupComponent = () => {
       <Portal>
         <FAB.Group
           open={open}
-          icon={open ? 'calendar-today' : 'plus'}
-          fabStyle={{backgroundColor: "#24B9E9"}}
+          icon={open ? 'view-dashboard-edit-outline' : 'plus'}
+          fabStyle={{ backgroundColor: "#24B9E9" }}
           actions={[
-            { icon: 'plus', onPress: () => console.log('Pressed add') },
             {
-              icon: 'star',
-              label: 'Star',
-              onPress: () => console.log('Pressed star'),
-            },
-            {
-              icon: 'email',
-              label: 'Email',
-              onPress: () => console.log('Pressed email'),
-            },
-            {
-              icon: 'bell',
-              label: 'Remind',
-              onPress: () => console.log('Pressed notifications'),
+              icon: 'plus',
+              label: 'Create new set',
+              onPress: () => navigation.navigate("CardSetEditScreen"),
             },
           ]}
           onStateChange={onStateChange}
