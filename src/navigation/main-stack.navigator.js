@@ -52,12 +52,12 @@ const MainTabNavigation = () => (
         )
       }} />
     <Tab.Screen
-      name="Settings"
-      component={SettingsScreen}
+      name="Account"
+      component={AccountScreen}
       options={{
         tabBarIcon: () => (
           <Icon
-            name='settings'
+            name='person'
             type='material'
             color='silver'
             size={30}
@@ -66,12 +66,12 @@ const MainTabNavigation = () => (
       }}
     />
     <Tab.Screen
-      name="Account"
-      component={AccountScreen}
+      name="Info"
+      component={SettingsScreen}
       options={{
         tabBarIcon: () => (
           <Icon
-            name='person'
+            name='info'
             type='material'
             color='silver'
             size={30}

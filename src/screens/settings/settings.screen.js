@@ -1,13 +1,29 @@
 import React from "react";
-import { Text } from "react-native"
+import { StyleSheet, View, Text } from "react-native";
+import { SafeAreaView } from 'react-native-safe-area-context';
 import ImgBackgroundComponent from "../../common/components/img-background/img-background.component";
 
-const SettingsScreen = () => {
+const InfoScreen = () => {
   return (
-    <ImgBackgroundComponent>
-      <Text>Settings</Text>
-    </ImgBackgroundComponent>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
+      <ImgBackgroundComponent>
+        <View style={styles.container}>
+          <Text>Info</Text>
+        </View>
+      </ImgBackgroundComponent>
+    </SafeAreaView>
   )
 }
 
-export default SettingsScreen;
+//TODO Стилизовать нормально
+const styles = StyleSheet.create({
+  container: {
+    margin: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "white",
+    borderRadius: 20
+  }
+});
+
+export default InfoScreen;
