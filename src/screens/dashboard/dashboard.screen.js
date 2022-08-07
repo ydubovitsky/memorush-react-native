@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, View, FlatList } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ImgBackgroundComponent from "../../common/components/img-background/img-background.component";
@@ -20,11 +20,28 @@ const INIT_CARD_SET_STATE = {
   flashCardArray: {}
 }
 
-const DashboardScreen = () => {
+const DashboardScreen = (props) => {
+
+  //! Читаем входные параметры
+  const { cardSetId } = props.route.params;
 
   const dispatch = useDispatch();
   // Init state for card set
   const [cardSetEntity, setCardSetEntity] = useState(INIT_CARD_SET_STATE);
+  // Get data for card set with id = ...
+  const cardSetById = useSelector(state => cardByIdSelector(state, cardSetId));
+
+  //! Если во входных параметрах передан ID списка, тогда мы иницилизируем входные данные уже сусещтвующими данными
+  useEffect(() => {
+    if (cardSetId != null && cardSetById != null) {
+      setCardSetEntity({
+        title: cardSetById.name,
+        tags: cardSetById.tags,
+        description: cardSetById.description,
+        flashCardArray: { ...cardSetById.cardList }
+      })
+    }
+  }, [])
 
   const cardSetEntityFormInputHandler = (name, value) => {
     setCardSetEntity({
@@ -43,7 +60,37 @@ const DashboardScreen = () => {
     })
   }
 
-  console.log(cardSetEntity);
+  const showActionButtonElements = () => {
+    return (
+      <>
+        <ButtonComponent
+          onClickHandler={addFlashCardElement}
+          name="Add new card"
+          color="#18BBF1"
+        />
+        {/* //TODO Вынести в отдельную функцию! */}
+        {cardSetId
+          ?
+          <ButtonComponent
+            onClickHandler={() => dispatch(updateCardSet(cardSetEntity))}
+            name="Update Set"
+            color="#3AE2CE"
+          />
+          :
+          <ButtonComponent
+            onClickHandler={() => dispatch(createNewCardSet(cardSetEntity))}
+            name="Save"
+            color="#3AE2CE"
+          />
+        }
+        <ButtonComponent
+          onClickHandler={() => props.navigation.navigate("MainTabNavigation")}
+          name="Go Back"
+          color="#405385"
+        />
+      </>
+    )
+  }
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
@@ -52,7 +99,10 @@ const DashboardScreen = () => {
           <View style={styles.cardSet}>
             <View style={styles.cardSetInfo}>
               <View style={styles.header}>
-                <CardSetInputForm cardSetEntityFormInputHandler={cardSetEntityFormInputHandler} />
+                <CardSetInputForm
+                  values={cardSetEntity}
+                  cardSetEntityFormInputHandler={cardSetEntityFormInputHandler}
+                />
               </View>
               <View style={styles.cardsContainer}>
                 <FlatList
@@ -62,10 +112,12 @@ const DashboardScreen = () => {
                       height: 1,
                     }}
                   />}
+                  //!FIXME Тут тонкий момент, вынести в отдельную функцию?
                   data={Object.entries(cardSetEntity.flashCardArray)}
                   renderItem={(data) => (
                     <CardInputForm
                       id={data.index}
+                      item={data.item[1]}
                       cardSetEntity={cardSetEntity}
                       setCardSetEntity={setCardSetEntity}
                     />
@@ -77,21 +129,7 @@ const DashboardScreen = () => {
             </View>
           </View>
           <View style={styles.buttonsContainer}>
-            <ButtonComponent
-              onClickHandler={addFlashCardElement}
-              name="Add new card"
-              color="#18BBF1"
-            />
-            <ButtonComponent
-              onClickHandler={() => dispatch(createNewCardSet(cardSetEntity))}
-              name="Save"
-              color="#3AE2CE"
-            />
-            <ButtonComponent
-              onClickHandler={() => dispatch(createNewCardSet(cardSetEntity))}
-              name="Go Back"
-              color="#405385"
-            />
+            {showActionButtonElements()}
           </View>
         </View>
       </ImgBackgroundComponent>

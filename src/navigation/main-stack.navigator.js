@@ -50,7 +50,7 @@ const MainTabNavigation = () => (
           />
         )
       }} />
-    <Tab.Screen
+    {/* <Tab.Screen
       name="Dashboard"
       component={DashboardScreen}
       options={{
@@ -62,7 +62,7 @@ const MainTabNavigation = () => (
             size={30}
           />
         )
-      }} />
+      }} /> */}
     <Tab.Screen
       name="Settings"
       component={SettingsScreen}
@@ -122,7 +122,8 @@ const CardSetDetailsTabNavigation = (args) => {
       />
       <Tab.Screen
         name="Edit"
-        component={EditCardSetScreen}
+        component={DashboardScreen}
+        initialParams={{ cardSetId }}
         options={{
           tabBarIcon: () => (
             <Icon

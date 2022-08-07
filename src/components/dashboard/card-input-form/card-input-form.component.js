@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { TextInput } from 'react-native-paper';
 
-const CardInputForm = ({ cardSetEntity, setCardSetEntity, id }) => {
+const CardInputForm = ({ cardSetEntity, setCardSetEntity, id, item }) => {
 
   const onChangeHandler = (name, value, id) => {
     setCardSetEntity({
@@ -24,18 +24,21 @@ const CardInputForm = ({ cardSetEntity, setCardSetEntity, id }) => {
         mode="outlined"
         style={styles.input}
         label="Front side"
+        value={item.frontSide}
         onChangeText={text => onChangeHandler("frontSide", text, id)}
       />
       <TextInput
         mode="outlined"
         style={styles.input}
         label="Back side"
+        value={item.backSide}
         onChangeText={text => onChangeHandler("backSide", text, id)}
       />
       <TextInput
         mode="outlined"
         style={[styles.input, styles.description]}
         label="Hint"
+        value={item.hint}
         onChangeText={text => onChangeHandler("hint", text, id)}
       />
     </View>
