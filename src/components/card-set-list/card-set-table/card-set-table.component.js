@@ -1,22 +1,12 @@
 import * as React from 'react';
+import { FlatList, StyleSheet, View } from 'react-native';
+import { Icon } from 'react-native-elements';
 import { DataTable } from 'react-native-paper';
-import { View, StyleSheet } from 'react-native';
-import { Icon } from 'react-native-elements'
-
-const optionsPerPage = [2, 3, 4];
 
 const CardSetTableComponent = ({ cardEntity, navigation }) => {
 
-  const [page, setPage] = React.useState(0);
-  const [itemsPerPage, setItemsPerPage] = React.useState(optionsPerPage[0]);
-
-  React.useEffect(() => {
-    setPage(0);
-  }, [itemsPerPage]);
-
-
-  const showTableRows = () => (
-    cardEntity.map(card => (
+  const getRenderItemElement = (card) => {
+    return (
       <DataTable.Row>
         <DataTable.Cell
           style={styles.row}
@@ -44,8 +34,8 @@ const CardSetTableComponent = ({ cardEntity, navigation }) => {
           />}
         </DataTable.Cell>
       </DataTable.Row>
-    ))
-  )
+    )
+  }
 
   return (
     <View style={styles.container}>
@@ -55,7 +45,11 @@ const CardSetTableComponent = ({ cardEntity, navigation }) => {
           <DataTable.Title style={styles.row} numeric>Total Cards</DataTable.Title>
           <DataTable.Title style={styles.row} numeric>Favorite</DataTable.Title>
         </DataTable.Header>
-        {showTableRows()}
+        <FlatList
+          data={cardEntity}
+          renderItem={(data) => getRenderItemElement(data.item)}
+          keyExtractor={item => item.id}
+        />
       </DataTable>
     </View>
   );
