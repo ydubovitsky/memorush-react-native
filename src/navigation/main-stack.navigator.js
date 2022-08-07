@@ -13,6 +13,7 @@ import RegistrationScreen from '../screens/registration/registration.screen';
 import SettingsScreen from '../screens/settings/settings.screen';
 import SignInScreen from '../screens/sign-in/sign-in.screen';
 import StartLoaderScreen from '../screens/start-loader/start-loader.screen';
+import AccountScreen from '../screens/account/account.screen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -57,6 +58,20 @@ const MainTabNavigation = () => (
         tabBarIcon: () => (
           <Icon
             name='settings'
+            type='material'
+            color='silver'
+            size={30}
+          />
+        )
+      }}
+    />
+    <Tab.Screen
+      name="Account"
+      component={AccountScreen}
+      options={{
+        tabBarIcon: () => (
+          <Icon
+            name='person'
             type='material'
             color='silver'
             size={30}
