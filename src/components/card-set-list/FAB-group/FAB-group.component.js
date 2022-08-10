@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { FAB, Portal, Provider } from 'react-native-paper';
 
-const FABGroupComponent = ({ navigation }) => {
+const FABGroupComponent = ({ navigation, fetchCardSetsDataHandler }) => {
 
   const [state, setState] = React.useState({ open: false });
 
@@ -22,6 +22,11 @@ const FABGroupComponent = ({ navigation }) => {
               icon: 'plus',
               label: 'Create new set',
               onPress: () => navigation.navigate("CardSetEditScreen"),
+            },
+            {
+              icon: 'sync',
+              label: 'Synchronize data',
+              onPress: fetchCardSetsDataHandler,
             },
           ]}
           onStateChange={onStateChange}

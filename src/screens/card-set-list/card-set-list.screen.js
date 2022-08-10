@@ -20,6 +20,10 @@ const CardSetListScreen = (props) => {
     dispatch(getAllCardSets());
   }, []);
 
+  const fetchCardSetsDataHandler = () => {
+    dispatch(getAllCardSets());
+  }
+
   const showCardsElement = () => (
     toggleCardsView ?
       <FlatList
@@ -51,7 +55,10 @@ const CardSetListScreen = (props) => {
         <View style={styles.cardSetListContainer}>
           {showCardsElement()}
         </View>
-        <FABGroupComponent navigation={props.navigation} />
+        <FABGroupComponent
+          navigation={props.navigation}
+          fetchCardSetsDataHandler={fetchCardSetsDataHandler}
+        />
       </ImgBackgroundComponent>
     </SafeAreaView>
   )
