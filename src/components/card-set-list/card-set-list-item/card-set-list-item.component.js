@@ -5,16 +5,16 @@ import { Icon } from 'react-native-elements'
 const DEFAULT_IMAGE_PATH = "../../../../assets/images/flash-card-set/jukebox-print-FUohNQatzVs-unsplash.jpg";
 
 const CardSetListItem = ({ item, navigation }) => (
-  <TouchableOpacity
-    style={styles.container}
-    onPress={() => navigation.navigate(
-      "CardSetDetailsTabNavigation",
-      {
-        cardSetId: item.id,
-        cardSetName: item.name
-      })}
-  >
-    <View style={styles.description}>
+  <View style={styles.container}>
+    <TouchableOpacity
+      style={styles.description}
+      onPress={() => navigation.navigate(
+        "CardSetDetailsTabNavigation",
+        {
+          cardSetId: item.id,
+          cardSetName: item.name
+        })}
+    >
       <ImageBackground
         source={require(DEFAULT_IMAGE_PATH)}
         resizeMode="cover"
@@ -26,20 +26,24 @@ const CardSetListItem = ({ item, navigation }) => (
       >
         <Text style={styles.text}>{item.name}</Text>
       </ImageBackground>
-    </View>
+    </TouchableOpacity>
     <View style={styles.info}>
-      <Text>{item.description}</Text>
-      <Text>Cards count: {item.cardList.length}</Text>
-      <Text>Created: {item.createdAt}</Text>
-      <Icon
-        raised
-        name='heartbeat'
-        type='font-awesome'
-        color='#f50'
-        size={10}
-      />
+      <View style={styles.cardInfo}>
+        <Text>Cards count: {item.cardList.length}</Text>
+        <Text>Created: {item.createdAt}</Text>
+        <Icon
+          raised
+          name='heart'
+          type='font-awesome'
+          color='#f50'
+          size={10}
+        />
+      </View>
+      <View style={styles.cardDescription}>
+        <Text>Description: {item.description || "I'll fill it out later"}</Text>
+      </View>
     </View>
-  </TouchableOpacity>
+  </View>
 );
 
 const styles = StyleSheet.create({
@@ -52,7 +56,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white"
   },
   description: {
-    flex: 5,
+    flex: 9,
     width: "100%",
     height: "100%",
     justifyContent: 'center', //Centered horizontally
@@ -66,17 +70,27 @@ const styles = StyleSheet.create({
     alignItems: 'center', //Centered vertically
   },
   text: {
-    fontSize: 20,
+    fontSize: 40,
     color: "white",
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: -1, height: 1 },
+    textShadowColor: 'rgba(0, 0, 0, 0.85)',
+    textShadowOffset: { width: -2, height: 2 },
     textShadowRadius: 10
   },
   info: {
     flex: 1,
-    flexDirection: "row",
+    flexDirection: "column",
     justifyContent: 'space-around', //Centered horizontally
-    alignItems: 'center', //Centered vertically
+    alignItems: 'center', //Centered vertically,
+  },
+  cardInfo: {
+    flex: 2,
+    width: '100%',
+    flexDirection: "row",
+    alignItems: 'center', //Centered vertically,
+    justifyContent: 'space-around'
+  },
+  cardDescription: {
+    flex: 1
   }
 })
 
