@@ -72,7 +72,7 @@ const CardSetEditScreen = (props) => {
         {cardSetId
           ?
           <ButtonComponent
-            onClickHandler={() => dispatch(updateCardSet(cardSetEntity))}
+            onClickHandler={() => dispatch(updateCardSet({ cardSetId, cardSetEntity }))}
             name="Update Set"
             color="#3AE2CE"
           />

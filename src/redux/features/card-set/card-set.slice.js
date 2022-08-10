@@ -46,7 +46,7 @@ export const updateCardSet = createAsyncThunk('card/update', async (arg, { getSt
   const state = getState();
   const token = state.auth.authEntity.token;
   const { cardSetId, cardSetEntity } = arg;
-
+  
   const payload = {
     method: 'PUT',
     url: `${BASE_URL}/api/v1/card-set/update/${cardSetId}`,
@@ -114,6 +114,17 @@ const cardSetSlice = createSlice({
         state.status = 'succeeded'
       })
       .addCase(createNewCardSet.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.error.message
+      })
+      // Update card set
+      .addCase(updateCardSet.pending, (state) => {
+        state.status = 'loading'
+      })
+      .addCase(updateCardSet.fulfilled, (state, action) => {
+        state.status = 'updated'
+      })
+      .addCase(updateCardSet.rejected, (state, action) => {
         state.status = 'failed'
         state.error = action.error.message
       })

@@ -22,7 +22,7 @@ const CardSetDetailsScreen = ({ route, navigation }) => {
         <AppbarComponent navigateToCardScreen={navigateToCardScreen} />
         <View style={styles.cardSetListContainer}>
           <FlatList
-            data={cardSet.cardList}
+            data={cardSet?.cardList}
             renderItem={({ item }) => <CardItemComponent item={item} navigation={navigation} />}
             keyExtractor={item => item.id}
           />
