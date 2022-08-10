@@ -6,6 +6,7 @@ import ImgBackgroundComponent from "../../common/components/img-background/img-b
 import CardItemComponent from "../../components/card-set-details/card-item.component";
 import { cardByIdSelector } from "../../redux/features/card-set/card-set.slice";
 import AppbarComponent from "../../components/card-set-details/app-bar.component";
+import EmptySetInformerComponent from "../../components/card-set-details/empty-set-informer.component";
 
 const CardSetDetailsScreen = ({ route, navigation }) => {
 
@@ -21,11 +22,17 @@ const CardSetDetailsScreen = ({ route, navigation }) => {
       <ImgBackgroundComponent>
         <AppbarComponent navigateToCardScreen={navigateToCardScreen} />
         <View style={styles.cardSetListContainer}>
-          <FlatList
-            data={cardSet?.cardList}
-            renderItem={({ item }) => <CardItemComponent item={item} navigation={navigation} />}
-            keyExtractor={item => item.id}
-          />
+          {
+            cardSet.cardList != false
+              ?
+              <FlatList
+                data={cardSet.cardList}
+                renderItem={({ item }) => <CardItemComponent item={item} navigation={navigation} />}
+                keyExtractor={item => item.id}
+              />
+              :
+              <EmptySetInformerComponent />
+          }
         </View>
       </ImgBackgroundComponent>
     </SafeAreaView>
