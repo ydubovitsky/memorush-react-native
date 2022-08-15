@@ -23,7 +23,7 @@ const CardSetDetailsScreen = ({ route, navigation }) => {
         <AppbarComponent navigateToCardScreen={navigateToCardScreen} />
         <View style={styles.cardSetListContainer}>
           {
-            cardSet.cardList != false
+            cardSet.flashCardArray != false
               ?
               <FlatList
                 data={cardSet.flashCardArray}

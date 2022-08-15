@@ -23,7 +23,7 @@ const INIT_CARD_SET_STATE = {
 const CardSetEditScreen = (props) => {
 
   //! Читаем входные параметры
-  const cardSetId  = props.route.params?.cardSetId;
+  const cardSetId = props.route.params?.cardSetId;
 
   const dispatch = useDispatch();
   // Init state for card set
@@ -71,11 +71,18 @@ const CardSetEditScreen = (props) => {
         {/* //TODO Вынести в отдельную функцию! */}
         {cardSetId
           ?
-          <ButtonComponent
-            onClickHandler={() => dispatch(updateCardSet({ cardSetId, cardSetEntity }))}
-            name="Update Set"
-            color="#3AE2CE"
-          />
+          <>
+            <ButtonComponent
+              onClickHandler={() => dispatch(updateCardSet({ cardSetId, cardSetEntity }))}
+              name="Update"
+              color="#3AE2CE"
+            />
+            <ButtonComponent
+              onClickHandler={() => dispatch(deleteCardSet({ cardSetId }))}
+              name="Delete"
+              color="red"
+            />
+          </>
           :
           <ButtonComponent
             onClickHandler={() => dispatch(createNewCardSet(cardSetEntity))}

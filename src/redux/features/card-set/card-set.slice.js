@@ -64,13 +64,13 @@ export const updateCardSet = createAsyncThunk('card/update', async (arg, { getSt
   return response.data;
 })
 
-export const deleteCardSet = createAsyncThunk('card/delete', async (id, { getState }) => {
+export const deleteCardSet = createAsyncThunk('card/delete', async ({cardSetId}, { getState }) => {
   const state = getState();
   const token = state.auth.authEntity.token;
-
+  
   const payload = {
     method: 'DELETE',
-    url: `${BASE_URL}/api/v1/card-set/delete/${id}`,
+    url: `${BASE_URL}/api/v1/card-set/delete/${cardSetId}`,
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
