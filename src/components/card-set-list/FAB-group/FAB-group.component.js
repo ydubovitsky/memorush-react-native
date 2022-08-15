@@ -1,13 +1,11 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { FAB, Portal, Provider } from 'react-native-paper';
 
 const FABGroupComponent = ({ navigation, fetchCardSetsDataHandler }) => {
 
-  const [state, setState] = React.useState({ open: false });
-
+  const [state, setState] = useState({ open: false });
   const onStateChange = ({ open }) => setState({ open });
-
   const { open } = state;
 
   return (
