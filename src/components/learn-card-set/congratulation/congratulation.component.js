@@ -25,7 +25,7 @@ const CongratulationComponent = ({ setInitialStateHandler, navigateToCardListHan
           onClickHandler={navigateToCardListHandler}
         />
         <ButtonComponent
-          style={styles.button}
+          style={[styles.button, {backgroundColor: "#5EBD6D"}]}
           name="Repeat Again"
           onClickHandler={setInitialStateHandler}
         />
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   imageContainer: {
-    flex: 5
+    flex: 7,
   },
   image: {
     width: "100%",
@@ -55,16 +55,18 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 50,
     textAlign: "center",
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowColor: 'rgba(0, 0, 0, 0.95)',
     textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10
+    textShadowRadius: 20
   },
   buttonContainer: {
     flex: 1,
-    justifyContent: 'space-around',
+    flexDirection: "row",
   },
   button: {
-    height: "33%"
+    flex: 1,
+    margin: 5,
+    borderRadius: 20
   }
 })
 

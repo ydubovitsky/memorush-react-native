@@ -73,7 +73,17 @@ const CardSetTableComponent = ({ cardEntity, navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "white"
+    backgroundColor: "white",
+    borderRadius: 20,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 2,
+    elevation: 3,
+    minWidth: 88,
   },
   row: {
     flex: 1,

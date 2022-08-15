@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
-    borderRadius: 10,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -33,7 +32,8 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#fff",
-    fontSize: 14
+    textAlign: "center",
+    fontSize: 17
   }
 });
 

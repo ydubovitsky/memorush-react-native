@@ -22,10 +22,11 @@ const AccountScreen = () => {
               icon="account"
               backgroundColor="#24B9E9"
             />
-            <Text style={styles.userTitle}>Hello, {username}</Text>
+            <Text style={styles.userTitle}>Hello 👋, {username}!</Text>
           </View>
           <View style={styles.statistic}>
-            <Text>You have {cardEntity.length} card sets in your pocket!</Text>
+            <Text style={styles.text}>You have {cardEntity.length} CardSets in your pocket!</Text>
+            <Text style={styles.text}>🥳</Text>
           </View>
         </View>
       </ImgBackgroundComponent>
@@ -40,7 +41,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "white",
-    borderRadius: 20
+    borderRadius: 20,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 2,
+    elevation: 3,
+    minWidth: 88,
   },
   accountInfo: {
     padding: 20,
@@ -54,6 +64,10 @@ const styles = StyleSheet.create({
   },
   statistic: {
     padding: 20,
+  },
+  text: {
+    textAlign: "center",
+    fontSize: 16
   }
 })
 

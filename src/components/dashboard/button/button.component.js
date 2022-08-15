@@ -7,7 +7,7 @@ const ButtonComponent = ({ style, name, onClickHandler, color }) => {
       style={[styles.container, style, { backgroundColor: color }]}
       onPress={onClickHandler}
     >
-      <Text style={styles.signIn}>{name}</Text>
+      <Text style={styles.text}>{name}</Text>
     </TouchableOpacity>
   );
 }
@@ -15,11 +15,9 @@ const ButtonComponent = ({ style, name, onClickHandler, color }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "rgba(24,187,241,1)",
-    height: 40,
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
-    borderRadius: 10,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -32,9 +30,10 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
     paddingRight: 16
   },
-  signIn: {
+  text: {
     color: "#fff",
-    fontSize: 14
+    fontSize: 16,
+    textAlign: "justify"
   }
 });
 

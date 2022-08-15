@@ -5,15 +5,16 @@ import { useSelector } from "react-redux";
 import ImgBackgroundComponent from "../../common/components/img-background/img-background.component";
 import ButtonComponent from "../../components/learn-card-set/button/button.component";
 import CardSetItemComponent from "../../components/learn-card-set/card-set-item/card-set-item.component";
+import CongratulationComponent from "../../components/learn-card-set/congratulation/congratulation.component";
 import ProgressBarComponent from "../../components/learn-card-set/progress-bar/progress-bar.component";
 import TipComponent from "../../components/learn-card-set/tip/tip.component";
-import CongratulationComponent from "../../components/learn-card-set/congratulation/congratulation.component";
 import { cardByIdSelector } from "../../redux/features/card-set/card-set.slice";
 
 const LearnCardSetScreen = ({ route, navigation }) => {
 
   const { cardSetId } = route.params;
 
+  const [isHintVisible, setIsHintVisible] = useState(false);
   const [isStarted, setIsStarted] = useState(false);
   const [currentPosition, setCurrentPosition] = useState(0);
   const [progress, setProgress] = useState(0);
@@ -53,8 +54,8 @@ const LearnCardSetScreen = ({ route, navigation }) => {
     setCards(cardSet?.flashCardArray);
   }
 
-  const navigateToflashCardArrayHandler = () => {
-    navigation.navigate(cardSet.name);
+  const navigateToCardListHandler = () => {
+    navigation.navigate(cardSet.title);
   }
 
   const showLearnCardViewElement = () => (
@@ -63,17 +64,36 @@ const LearnCardSetScreen = ({ route, navigation }) => {
       <View style={styles.learnViewContainer}>
         <View style={styles.workArea}>
           <ProgressBarComponent progress={progress} />
-          <CardSetItemComponent item={cards[currentPosition]} />
-        </View>
-        <View style={styles.buttonsContainer}>
-          <ButtonComponent style={styles.button} name="I know it" onClickHandler={knowCardActionHandler} />
-          <ButtonComponent style={{ ...styles.button, backgroundColor: 'red' }} name="I don`t know it" onClickHandler={nextCardHandler} />
+          <View style={styles.cardContainer}>
+            <CardSetItemComponent
+              item={cards[currentPosition]}
+              isHintVisible={isHintVisible}
+            />
+          </View>
+          <View style={styles.buttonsContainer}>
+            <ButtonComponent
+              style={[styles.action, { backgroundColor: "#5EBD6D" }]}
+              onClickHandler={knowCardActionHandler}
+              name="I know it">
+            </ButtonComponent>
+            <ButtonComponent
+              style={[styles.action, { backgroundColor: "#FD8344" }]}
+              onClickHandler={() => setIsHintVisible(!isHintVisible)}
+              name="Show me hint"
+            >
+            </ButtonComponent>
+            <ButtonComponent
+              style={[styles.action, { marginRight: 0, backgroundColor: "#FC1444" }]}
+              name="I dont't know"
+              onClickHandler={nextCardHandler}>
+            </ButtonComponent>
+          </View>
         </View>
       </View>
       :
       <CongratulationComponent
         setInitialStateHandler={setInitialStateHandler}
-        navigateToflashCardArrayHandler={navigateToflashCardArrayHandler}
+        navigateToCardListHandler={navigateToCardListHandler}
       />
   )
 
@@ -81,7 +101,16 @@ const LearnCardSetScreen = ({ route, navigation }) => {
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
       <ImgBackgroundComponent>
         <View style={styles.container}>
-          {isStarted ? showLearnCardViewElement() : <TipComponent setIsStarted={setIsStarted} />}
+          {
+            isStarted
+              ?
+              showLearnCardViewElement()
+              :
+              <TipComponent
+                setIsStarted={setIsStarted}
+                navigateToCardListHandler={navigateToCardListHandler}
+              />
+          }
         </View>
       </ImgBackgroundComponent>
     </SafeAreaView>
@@ -91,21 +120,35 @@ const LearnCardSetScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20
+    padding: 20,
   },
   learnViewContainer: {
-    flex: 1
+    flex: 1,
   },
   workArea: {
-    flex: 5
+    flex: 5,
+    backgroundColor: "white",
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20
+  },
+  cardContainer: {
+    flex: 7
   },
   buttonsContainer: {
     flex: 1,
+    flexDirection: "row",
     justifyContent: "center",
-    justifyContent: 'space-around'
+    overflow: "hidden",
+    borderBottomEndRadius: 20,
+    borderBottomStartRadius: 20
   },
-  button: {
-    height: "33%"
+  action: {
+    flex: 1,
+    backgroundColor: "blue",
+    justifyContent: "center",
+    alignItems: "center",
+    overflow: "hidden",
+    marginRight: 5
   }
 })
 

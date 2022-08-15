@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import SpeakerIconComponent from '../../common/components/speaker-icon/speaker-icon.component';
 
-const DEFAULT_IMAGE_PATH = "../../../assets/images/flash-card-set/flash-card-set-cover-one.jpg";
+const DEFAULT_IMAGE_PATH = "../../../assets/images/flash-card-set/nordwood-themes-R53t-Tg6J4c-unsplash (1).jpg";
 
 const CardItemComponent = ({ item, navigation }) => {
 
@@ -44,7 +44,16 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     marginVertical: 8,
     borderRadius: 20,
-    backgroundColor: "white"
+    backgroundColor: "white",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 2,
+    elevation: 3,
+    minWidth: 88,
   },
   description: {
     flex: 5,
@@ -62,10 +71,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 40,
-    color: "white",
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10
+    textAlign: "center"
   },
   info: {
     flex: 1,

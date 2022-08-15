@@ -14,6 +14,15 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     padding: 40,
     borderRadius: 20,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1
+    },
+    shadowOpacity: 0.35,
+    shadowRadius: 5,
+    elevation: 2,
+    minWidth: 88,
   },
   text: {
     textAlign: "center",

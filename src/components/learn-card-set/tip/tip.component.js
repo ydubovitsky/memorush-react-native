@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 import ButtonComponent from "../button/button.component";
 
-const TipComponent = ({ setIsStarted }) => {
+const TipComponent = ({ setIsStarted, navigateToCardListHandler }) => {
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
@@ -16,8 +16,13 @@ const TipComponent = ({ setIsStarted }) => {
       <View style={styles.buttonsContainer}>
         <ButtonComponent
           name="Start"
-          style={styles.button}
+          style={[styles.button, { borderBottomStartRadius: 20, backgroundColor: "#5EBD6D" }]}
           onClickHandler={() => setIsStarted(true)}
+        />
+        <ButtonComponent
+          name="Go back"
+          style={[styles.button, { marginRight: 0, borderBottomEndRadius: 20 }]}
+          onClickHandler={navigateToCardListHandler}
         />
       </View>
     </View>
@@ -26,14 +31,23 @@ const TipComponent = ({ setIsStarted }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: "white",
+    borderRadius: 20,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1
+    },
+    shadowOpacity: 0.35,
+    shadowRadius: 5,
+    elevation: 2,
+    minWidth: 88,
   },
   textContainer: {
-    flex: 5,
-    backgroundColor: "white",
+    flex: 7,
     justifyContent: "space-around",
     alignItems: "center",
-    borderRadius: 20
   },
   title: {
     fontSize: 30,
@@ -45,11 +59,12 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     flex: 1,
+    flexDirection: "row",
     justifyContent: "center",
-    justifyContent: 'space-around'
   },
   button: {
-    height: "33%"
+    flex: 1,
+    marginRight: 5,
   }
 })
 

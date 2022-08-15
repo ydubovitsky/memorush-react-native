@@ -64,6 +64,7 @@ const CardSetEditScreen = (props) => {
     return (
       <>
         <ButtonComponent
+          style={styles.button}
           onClickHandler={addFlashCardElement}
           name="Add new card"
           color="#18BBF1"
@@ -73,11 +74,13 @@ const CardSetEditScreen = (props) => {
           ?
           <>
             <ButtonComponent
+              style={styles.button}
               onClickHandler={() => dispatch(updateCardSet({ cardSetId, cardSetEntity }))}
               name="Update"
-              color="#3AE2CE"
+              color="#5EBD6D"
             />
             <ButtonComponent
+              style={styles.button}
               onClickHandler={() => dispatch(deleteCardSet({ cardSetId }))}
               name="Delete"
               color="red"
@@ -85,15 +88,17 @@ const CardSetEditScreen = (props) => {
           </>
           :
           <ButtonComponent
+            style={styles.button}
             onClickHandler={() => dispatch(createNewCardSet(cardSetEntity))}
             name="Save"
             color="#3AE2CE"
           />
         }
         <ButtonComponent
+          style={[styles.button, {marginRight: 0}]}
           onClickHandler={() => props.navigation.navigate("MainTabNavigation")}
           name="Go Back"
-          color="#405385"
+          color="silver"
         />
       </>
     )
@@ -147,19 +152,22 @@ const CardSetEditScreen = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    margin: 10,
     flexDirection: "column",
     justifyContent: "space-between",
+    backgroundColor: "white",
+    borderRadius: 20,
+    overflow: "hidden"
   },
   cardSet: {
     flex: 7,
+    padding: 10,
     justifyContent: "center",
     justifyContent: "space-between",
   },
   cardSetInfo: {
     flex: 5,
     borderRadius: 20,
-    backgroundColor: "white"
   },
   header: {
   },
@@ -170,10 +178,12 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     flex: 1,
     flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "center",
   },
+  button: {
+    flex: 1,
+    marginRight: 5
+  }
 })
 
 export default CardSetEditScreen;

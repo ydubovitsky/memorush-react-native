@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { ImageBackground, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { Icon } from 'react-native-elements';
 import SpeakerIconComponent from '../../../common/components/speaker-icon/speaker-icon.component';
 
-const DEFAULT_IMAGE_PATH = "../../../../assets/images/flash-card-set/flash-card-set-cover-one.jpg";
+const DEFAULT_IMAGE_PATH = "../../../../assets/images/flash-card-set/nordwood-themes-R53t-Tg6J4c-unsplash (1).jpg";
 
-const CardSetItemComponent = ({ item = {} }) => {
+const CardSetItemComponent = ({ isHintVisible, item = {} }) => {
 
   const [isFrontSide, setIsFrontSide] = React.useState(true);
 
@@ -33,12 +32,7 @@ const CardSetItemComponent = ({ item = {} }) => {
       </View>
       <View style={styles.info}>
         <SpeakerIconComponent text={item.frontSide} />
-        <Icon
-          name='heart'
-          type='font-awesome'
-          color='red'
-          size={15}
-        />
+        {isHintVisible ? <Text style={{fontSize: 24}}>Hint: {item.hint}</Text> : null}
       </View>
     </TouchableOpacity>
   );
@@ -69,10 +63,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 50,
-    color: "white",
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10
+    textAlign: "center",
   },
   info: {
     flex: 1,

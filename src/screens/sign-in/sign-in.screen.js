@@ -62,7 +62,7 @@ const SignInScreen = (props) => {
           </View>
           <View style={styles.buttonsContainer}>
             <ButtonComponent
-              style={styles.button}
+              style={[styles.button]}
               name="Sign In"
               onClickHandler={onLoginFormHandler}
             >
