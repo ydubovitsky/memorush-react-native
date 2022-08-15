@@ -14,6 +14,7 @@ import SettingsScreen from '../screens/settings/settings.screen';
 import SignInScreen from '../screens/sign-in/sign-in.screen';
 import StartLoaderScreen from '../screens/start-loader/start-loader.screen';
 import AccountScreen from '../screens/account/account.screen';
+import PopupWrapperHOC from '../hoc/popup-wrapper.hoc';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -21,15 +22,17 @@ const Tab = createBottomTabNavigator();
 const MainStackNavigator = () => (
   <ImgBackgroundComponent>
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="StartLoaderScreen" screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="StartLoaderScreen" component={StartLoaderScreen} />
-        <Stack.Screen name="SignInScreen" component={SignInScreen} />
-        <Stack.Screen name="RegistrationScreen" component={RegistrationScreen} />
-        <Stack.Screen name="CardSetEditScreen" component={CardSetEditScreen} />
-        {/* //! Inner navigation below*/}
-        <Stack.Screen name="MainTabNavigation" component={MainTabNavigation} />
-        <Stack.Screen name="CardSetDetailsTabNavigation" component={CardSetDetailsTabNavigation} />
-      </Stack.Navigator>
+      <PopupWrapperHOC>
+        <Stack.Navigator initialRouteName="StartLoaderScreen" screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="StartLoaderScreen" component={StartLoaderScreen} />
+          <Stack.Screen name="SignInScreen" component={SignInScreen} />
+          <Stack.Screen name="RegistrationScreen" component={RegistrationScreen} />
+          <Stack.Screen name="CardSetEditScreen" component={CardSetEditScreen} />
+          {/* //! Inner navigation below*/}
+          <Stack.Screen name="MainTabNavigation" component={MainTabNavigation} />
+          <Stack.Screen name="CardSetDetailsTabNavigation" component={CardSetDetailsTabNavigation} />
+        </Stack.Navigator>
+      </PopupWrapperHOC>
     </NavigationContainer>
   </ImgBackgroundComponent>
 );
