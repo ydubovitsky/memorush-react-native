@@ -3,24 +3,31 @@ import { ImageBackground, StyleSheet, Text, View } from "react-native";
 
 const DEFAULT_IMAGE_PATH = "../../../../assets/images/flash-card-set/jukebox-print-FUohNQatzVs-unsplash.jpg";
 
-const FavoritesSetListItem = () => (
-  <View
-    style={styles.container}
-  >
-    <View style={styles.description}>
-      <ImageBackground
-        source={require(DEFAULT_IMAGE_PATH)}
-        resizeMode="cover"
-        imageStyle={{ borderRadius: 25 }}
-        style={styles.image}
-      >
-        <View style={styles.textContainer}>
-          <Text style={styles.text}>Inside</Text>
-        </View>
-      </ImageBackground>
+const FavoritesSetListItem = ({item}) => {
+
+  const {
+    title
+  } = item;
+
+  return (
+    <View
+      style={styles.container}
+    >
+      <View style={styles.description}>
+        <ImageBackground
+          source={require(DEFAULT_IMAGE_PATH)}
+          resizeMode="cover"
+          imageStyle={{ borderRadius: 25 }}
+          style={styles.image}
+        >
+          <View style={styles.textContainer}>
+            <Text style={styles.text}>{title}</Text>
+          </View>
+        </ImageBackground>
+      </View>
     </View>
-  </View>
-);
+  );
+}
 
 const styles = StyleSheet.create({
   container: {

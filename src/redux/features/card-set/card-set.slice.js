@@ -46,7 +46,7 @@ export const updateCardSet = createAsyncThunk('card/update', async (arg, { getSt
   const state = getState();
   const token = state.auth.authEntity.token;
   const { cardSetId, cardSetEntity } = arg;
-  
+
   const payload = {
     method: 'PUT',
     url: `${BASE_URL}/api/v1/card-set/update/${cardSetId}`,
@@ -71,6 +71,28 @@ export const deleteCardSet = createAsyncThunk('card/delete', async (id, { getSta
   const payload = {
     method: 'DELETE',
     url: `${BASE_URL}/api/v1/card-set/delete/${id}`,
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': token
+    }
+  }
+  const response = await fetchDataService(payload);
+  return response.data;
+})
+
+export const setFavoriteCardSet = createAsyncThunk('card/setFavorite', async (id, { getState }) => {
+  const state = getState();
+  const token = state.auth.authEntity.token;
+  const card = state.cardSet.cardEntity.find(card => card.id === id);
+  console.log(card);
+  const payload = {
+    method: 'PUT',
+    url: `${BASE_URL}/api/v1/card-set/update/${id}`,
+    data: {
+      ...card,
+      isFavorite: !card.isFavorite
+    },
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -128,6 +150,19 @@ const cardSetSlice = createSlice({
         state.status = 'failed'
         state.error = action.error.message
       })
+      // Set favorite card set
+      .addCase(setFavoriteCardSet.pending, (state) => {
+        state.status = 'loading'
+      })
+      .addCase(setFavoriteCardSet.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        const idx = state.cardEntity.findIndex(cardSet => cardSet.id === action.payload.id);
+        state.cardEntity[idx] = action.payload;
+      })
+      .addCase(setFavoriteCardSet.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.error.message
+      })
   }
 })
 
@@ -163,3 +198,7 @@ export const getSortedCardByCardSetSelector = state => {
 
   return sorted;
 }
+
+export const cardSetFavoriteSelector = state => (
+  state.cardSet.cardEntity.filter(card => card.isFavorite === true)
+);

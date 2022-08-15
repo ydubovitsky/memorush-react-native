@@ -2,36 +2,52 @@ import * as React from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { DataTable } from 'react-native-paper';
+import { useDispatch } from 'react-redux';
+import { setFavoriteCardSet } from '../../../redux/features/card-set/card-set.slice';
 
 const CardSetTableComponent = ({ cardEntity, navigation }) => {
 
+  const dispatch = useDispatch();
+
   const getRenderItemElement = (card) => {
+
+    const {
+      id,
+      title,
+      flashCardArray,
+      isFavorite
+    } = card;
+
+    const navigateHandler = () => {
+      navigation.navigate(
+        "CardSetDetailsTabNavigation",
+        {
+          cardSetId: id,
+          cardSetName: title
+        })
+    }
+
+    const setFavoriteCardSetHandler = () => {
+      dispatch(setFavoriteCardSet(id))
+    }
+
     return (
       <DataTable.Row>
         <DataTable.Cell
           style={styles.row}
-          onPress={() => navigation.navigate(
-            "CardSetDetailsTabNavigation",
-            {
-              cardSetId: card.id,
-              cardSetName: card.name
-            })}
-        >{card.name}</DataTable.Cell>
-        <DataTable.Cell style={styles.row} numeric>{card.cardList.length}</DataTable.Cell>
-        <DataTable.Cell style={styles.row}>{card.isFavorite
-          ? <Icon
-            name='heart'
-            type='font-awesome'
-            color='red'
-            size={30}
-          />
-          :
+          onPress={navigateHandler}
+        >
+          {card.title}
+        </DataTable.Cell>
+        <DataTable.Cell style={styles.row} numeric>{flashCardArray.length}</DataTable.Cell>
+        <DataTable.Cell style={styles.row}>
           <Icon
             name='heart'
             type='font-awesome'
-            color='silver'
+            color={isFavorite ? 'red' : 'silver'}
             size={30}
-          />}
+            onPress={setFavoriteCardSetHandler}
+          />
         </DataTable.Cell>
       </DataTable.Row>
     )

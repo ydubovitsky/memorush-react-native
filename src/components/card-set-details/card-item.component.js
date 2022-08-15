@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { ImageBackground, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { Icon } from 'react-native-elements';
+import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import SpeakerIconComponent from '../../common/components/speaker-icon/speaker-icon.component';
 
 const DEFAULT_IMAGE_PATH = "../../../assets/images/flash-card-set/flash-card-set-cover-one.jpg";
@@ -11,14 +10,6 @@ const CardItemComponent = ({ item, navigation }) => {
 
   const changeCardSideHandler = () => {
     setIsFrontSide(!isFrontSide);
-  }
-
-  const navigateHandler = () => {
-    navigation.navigate(
-      "CardDetailsScreen",
-      {
-        cardSetId: item.id,
-      })
   }
 
   return (
@@ -40,16 +31,7 @@ const CardItemComponent = ({ item, navigation }) => {
         </ImageBackground>
       </View>
       <View style={styles.info}>
-        {/* <Text>{item.description}</Text> */}
-        {/* <Text>Cards count: {item.cardList.length}</Text> */}
-        {/* <Text>Created: {item.createdAt}</Text> */}
         <SpeakerIconComponent text={item.frontSide} />
-        <Icon
-          name='heart'
-          type='font-awesome'
-          color='red'
-          size={15}
-        />
       </View>
     </TouchableOpacity>
   );
@@ -79,7 +61,7 @@ const styles = StyleSheet.create({
     alignItems: 'center', //Centered vertically
   },
   text: {
-    fontSize: 20,
+    fontSize: 40,
     color: "white",
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: -1, height: 1 },

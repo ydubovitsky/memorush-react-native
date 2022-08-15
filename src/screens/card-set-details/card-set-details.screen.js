@@ -26,7 +26,7 @@ const CardSetDetailsScreen = ({ route, navigation }) => {
             cardSet.cardList != false
               ?
               <FlatList
-                data={cardSet.cardList}
+                data={cardSet.flashCardArray}
                 renderItem={({ item }) => <CardItemComponent item={item} navigation={navigation} />}
                 keyExtractor={item => item.id}
               />

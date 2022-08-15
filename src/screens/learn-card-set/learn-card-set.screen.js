@@ -23,7 +23,7 @@ const LearnCardSetScreen = ({ route, navigation }) => {
 
   //TODO Переписать сигнатуру на cardSetById...
   const cardSet = useSelector(state => cardByIdSelector(state, cardSetId));
-  const [cards, setCards] = useState(cardSet.cardList);
+  const [cards, setCards] = useState(cardSet.flashCardArray);
 
   const nextCardHandler = () => {
     currentPosition < (cards.length - 1) ? setCurrentPosition(currentPosition + 1) : setCurrentPosition(0);
@@ -50,10 +50,10 @@ const LearnCardSetScreen = ({ route, navigation }) => {
   const setInitialStateHandler = () => {
     setIsStarted(false);
     learned = [];
-    setCards(cardSet?.cardList);
+    setCards(cardSet?.flashCardArray);
   }
 
-  const navigateToCardListHandler = () => {
+  const navigateToflashCardArrayHandler = () => {
     navigation.navigate(cardSet.name);
   }
 
@@ -73,7 +73,7 @@ const LearnCardSetScreen = ({ route, navigation }) => {
       :
       <CongratulationComponent
         setInitialStateHandler={setInitialStateHandler}
-        navigateToCardListHandler={navigateToCardListHandler}
+        navigateToflashCardArrayHandler={navigateToflashCardArrayHandler}
       />
   )
 

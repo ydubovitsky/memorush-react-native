@@ -1,18 +1,32 @@
 import * as React from 'react';
 import { ImageBackground, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements'
+import { setFavoriteCardSet } from '../../../redux/features/card-set/card-set.slice';
+import { useDispatch } from 'react-redux';
 
 const DEFAULT_IMAGE_PATH = "../../../../assets/images/flash-card-set/jukebox-print-FUohNQatzVs-unsplash.jpg";
 
-const CardSetListItem = ({ item, navigation }) => (
-  <View style={styles.container}>
+const CardSetListItem = ({ item, navigation }) => {
+
+  const {
+    id,
+    title,
+    flashCardArray,
+    description,
+    isFavorite,
+    createdAt
+  } = item;
+
+  const dispatch = useDispatch();
+
+  return (<View style={styles.container}>
     <TouchableOpacity
       style={styles.description}
       onPress={() => navigation.navigate(
         "CardSetDetailsTabNavigation",
         {
-          cardSetId: item.id,
-          cardSetName: item.name
+          cardSetId: id,
+          cardSetName: title
         })}
     >
       <ImageBackground
@@ -24,27 +38,29 @@ const CardSetListItem = ({ item, navigation }) => (
         }}
         style={styles.image}
       >
-        <Text style={styles.text}>{item.name}</Text>
+        <Text style={styles.text}>{title}</Text>
       </ImageBackground>
     </TouchableOpacity>
     <View style={styles.info}>
       <View style={styles.cardInfo}>
-        <Text>Cards count: {item.cardList.length}</Text>
-        <Text>Created: {item.createdAt}</Text>
+        <Text>Cards count: {flashCardArray.length}</Text>
+        <Text>Created: {createdAt}</Text>
         <Icon
           raised
           name='heart'
           type='font-awesome'
-          color='#f50'
+          color={isFavorite ? '#f50' : 'silver'}
+          onPress={() => dispatch(setFavoriteCardSet(id))}
           size={10}
         />
       </View>
       <View style={styles.cardDescription}>
-        <Text>Description: {item.description || "I'll fill it out later"}</Text>
+        <Text>Description: {description || "I'll fill it out later"}</Text>
       </View>
     </View>
   </View>
-);
+  );
+}
 
 const styles = StyleSheet.create({
   container: {

@@ -35,10 +35,10 @@ const CardSetEditScreen = (props) => {
   useEffect(() => {
     if (cardSetId != null && cardSetById != null) {
       setCardSetEntity({
-        title: cardSetById.name,
+        title: cardSetById.title,
         tags: cardSetById.tags,
         description: cardSetById.description,
-        flashCardArray: { ...cardSetById.cardList }
+        flashCardArray: { ...cardSetById.flashCardArray }
       })
     }
   }, [])

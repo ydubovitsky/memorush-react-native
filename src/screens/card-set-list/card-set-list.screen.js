@@ -8,12 +8,17 @@ import CardSetListItem from "../../components/card-set-list/card-set-list-item/c
 import CardSetTableComponent from "../../components/card-set-list/card-set-table/card-set-table.component";
 import FABGroupComponent from "../../components/card-set-list/FAB-group/FAB-group.component";
 import FavoritesSetListItem from "../../components/card-set-list/favorites-set-list-item/favorites-set-list-item";
-import { cardEntitySelector, getAllCardSets } from "../../redux/features/card-set/card-set.slice";
+import {
+  cardEntitySelector,
+  getAllCardSets,
+  cardSetFavoriteSelector
+} from "../../redux/features/card-set/card-set.slice";
 
 const CardSetListScreen = (props) => {
 
   const dispatch = useDispatch();
   const cardEntity = useSelector(cardEntitySelector);
+  const cardSetFavorites = useSelector(cardSetFavoriteSelector);
   const [toggleCardsView, setToggleCardsView] = useState(true);
 
   useEffect(() => {
@@ -46,9 +51,9 @@ const CardSetListScreen = (props) => {
         />
         <View style={styles.favoritesList}>
           <FlatList
-            data={cardEntity}
+            data={cardSetFavorites}
             horizontal
-            renderItem={FavoritesSetListItem}
+            renderItem={(data) => <FavoritesSetListItem item={data.item} />}
             keyExtractor={item => item.id}
           />
         </View>

@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     alignItems: 'center', //Centered vertically
   },
   text: {
-    fontSize: 100,
+    fontSize: 50,
     color: "white",
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: -1, height: 1 },
