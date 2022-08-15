@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import { FlatList, StyleSheet, View, Text } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from "react-redux";
 import ImgBackgroundComponent from "../../common/components/img-background/img-background.component";
@@ -43,6 +43,23 @@ const CardSetListScreen = (props) => {
       />
   )
 
+  const showFavoritesCardsetElements = () => {
+    return (
+      cardSetFavorites.length > 0
+        ?
+        <FlatList
+          data={cardSetFavorites}
+          horizontal
+          renderItem={(data) => <FavoritesSetListItem item={data.item} />}
+          keyExtractor={item => item.id}
+        />
+        :
+        <View style={styles.favoritesPlaceholder}>
+          <Text>You don't have any favorite sets yet 😉</Text>
+        </View>
+    )
+  }
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
       <ImgBackgroundComponent>
@@ -50,12 +67,7 @@ const CardSetListScreen = (props) => {
           cardViewToggleHandler={() => setToggleCardsView(!toggleCardsView)}
         />
         <View style={styles.favoritesList}>
-          <FlatList
-            data={cardSetFavorites}
-            horizontal
-            renderItem={(data) => <FavoritesSetListItem item={data.item} />}
-            keyExtractor={item => item.id}
-          />
+          {showFavoritesCardsetElements()}
         </View>
         <View style={styles.cardSetListContainer}>
           {showCardsElement()}
@@ -84,6 +96,24 @@ const styles = StyleSheet.create({
     flex: 4,
     padding: 10,
     flexDirection: "row"
+  },
+  favoritesPlaceholder: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 20,
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 2,
+    elevation: 1,
+    minWidth: 88,
+    paddingLeft: 16,
+    paddingRight: 16
   }
 })
 
