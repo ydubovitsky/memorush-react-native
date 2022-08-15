@@ -64,10 +64,10 @@ export const updateCardSet = createAsyncThunk('card/update', async (arg, { getSt
   return response.data;
 })
 
-export const deleteCardSet = createAsyncThunk('card/delete', async ({cardSetId}, { getState }) => {
+export const deleteCardSet = createAsyncThunk('card/delete', async ({ cardSetId }, { getState }) => {
   const state = getState();
   const token = state.auth.authEntity.token;
-  
+
   const payload = {
     method: 'DELETE',
     url: `${BASE_URL}/api/v1/card-set/delete/${cardSetId}`,
@@ -85,7 +85,6 @@ export const setFavoriteCardSet = createAsyncThunk('card/setFavorite', async (id
   const state = getState();
   const token = state.auth.authEntity.token;
   const card = state.cardSet.cardEntity.find(card => card.id === id);
-  console.log(card);
   const payload = {
     method: 'PUT',
     url: `${BASE_URL}/api/v1/card-set/update/${id}`,
@@ -134,6 +133,10 @@ const cardSetSlice = createSlice({
       })
       .addCase(createNewCardSet.fulfilled, (state, action) => {
         state.status = 'succeeded'
+        state.cardEntity = [
+          ...state.cardEntity,
+          action.payload
+        ]
       })
       .addCase(createNewCardSet.rejected, (state, action) => {
         state.status = 'failed'
@@ -145,6 +148,8 @@ const cardSetSlice = createSlice({
       })
       .addCase(updateCardSet.fulfilled, (state, action) => {
         state.status = 'updated'
+        const idx = state.cardEntity.findIndex(card => card.id === action.payload.id);
+        state.cardEntity[idx] = action.payload;
       })
       .addCase(updateCardSet.rejected, (state, action) => {
         state.status = 'failed'
