@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, View, FlatList } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ImgBackgroundComponent from "../../common/components/img-background/img-background.component";
-import CardInputForm from "../../components/dashboard/card-input-form/card-input-form.component";
-import CardSetInputForm from "../../components/dashboard/card-set-input-form/card-set-input-form.component";
-import ButtonComponent from "../../components/dashboard/button/button.component";
+import CardInputForm from "./atomic-components/card-input-form/card-input-form.component";
+import CardSetInputForm from "./atomic-components/card-set-input-form/card-set-input-form.component";
+import ButtonComponent from "./atomic-components/button/button.component";
 import { useDispatch, useSelector } from 'react-redux';
 import {
   createNewCardSet,

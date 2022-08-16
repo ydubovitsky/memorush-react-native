@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
-import ButtonComponent from "../button/button.component";
+import ButtonComponent from "../../atomic-components/button/button.component";
 
 const TipComponent = ({ setIsStarted, navigateToCardListHandler }) => {
   return (

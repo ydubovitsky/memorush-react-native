@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { ImageBackground, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements'
-import { setFavoriteCardSet } from '../../../redux/features/card-set/card-set.slice';
+import { setFavoriteCardSet } from '../../../../redux/features/card-set/card-set.slice';
 import { useDispatch } from 'react-redux';
 
-const DEFAULT_IMAGE_PATH = "../../../../assets/images/flash-card-set/jukebox-print-FUohNQatzVs-unsplash.jpg";
+const DEFAULT_IMAGE_PATH = "../../../../../assets/images/flash-card-set/jukebox-print-FUohNQatzVs-unsplash.jpg";
 
 const CardSetListItem = ({ item, navigation }) => {
 

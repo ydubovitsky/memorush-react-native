@@ -3,11 +3,11 @@ import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSelector } from "react-redux";
 import ImgBackgroundComponent from "../../common/components/img-background/img-background.component";
-import ButtonComponent from "../../components/learn-card-set/button/button.component";
-import CardSetItemComponent from "../../components/learn-card-set/card-set-item/card-set-item.component";
-import CongratulationComponent from "../../components/learn-card-set/congratulation/congratulation.component";
-import ProgressBarComponent from "../../components/learn-card-set/progress-bar/progress-bar.component";
-import TipComponent from "../../components/learn-card-set/tip/tip.component";
+import ButtonComponent from "./atomic-components/button/button.component";
+import CardSetItemComponent from "./components/card-set-item/card-set-item.component";
+import CongratulationComponent from "./components/congratulation/congratulation.component";
+import ProgressBarComponent from "./components/progress-bar/progress-bar.component";
+import TipComponent from "./components/tip/tip.component";
 import { cardByIdSelector } from "../../redux/features/card-set/card-set.slice";
 
 const LearnCardSetScreen = ({ route, navigation }) => {

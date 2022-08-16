@@ -3,7 +3,7 @@ import { FlatList, StyleSheet, View } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { DataTable } from 'react-native-paper';
 import { useDispatch } from 'react-redux';
-import { setFavoriteCardSet } from '../../../redux/features/card-set/card-set.slice';
+import { setFavoriteCardSet } from '../../../../redux/features/card-set/card-set.slice';
 
 const CardSetTableComponent = ({ cardEntity, navigation }) => {
 

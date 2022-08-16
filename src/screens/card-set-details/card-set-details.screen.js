@@ -3,10 +3,10 @@ import { FlatList, StyleSheet, View } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSelector } from "react-redux";
 import ImgBackgroundComponent from "../../common/components/img-background/img-background.component";
-import CardItemComponent from "../../components/card-set-details/card-item.component";
+import CardItemComponent from "./components/card-item.component";
 import { cardByIdSelector } from "../../redux/features/card-set/card-set.slice";
-import AppbarComponent from "../../components/card-set-details/app-bar.component";
-import EmptySetInformerComponent from "../../components/card-set-details/empty-set-informer.component";
+import AppbarComponent from "./components/app-bar.component";
+import EmptySetInformerComponent from "./components/empty-set-informer.component";
 
 const CardSetDetailsScreen = ({ route, navigation }) => {
 

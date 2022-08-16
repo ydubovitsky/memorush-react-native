@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { ImageBackground, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import SpeakerIconComponent from '../../../common/components/speaker-icon/speaker-icon.component';
+import SpeakerIconComponent from '../../../../common/components/speaker-icon/speaker-icon.component';
 
-const DEFAULT_IMAGE_PATH = "../../../../assets/images/flash-card-set/nordwood-themes-R53t-Tg6J4c-unsplash (1).jpg";
+const DEFAULT_IMAGE_PATH = "../../../../../assets/images/flash-card-set/nordwood-themes-R53t-Tg6J4c-unsplash (1).jpg";
 
 const CardSetItemComponent = ({ isHintVisible, item = {} }) => {
 

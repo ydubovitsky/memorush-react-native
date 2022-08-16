@@ -1,8 +1,8 @@
 import React from "react";
 import { View, StyleSheet, Text, ImageBackground } from "react-native";
-import ButtonComponent from "../button/button.component";
+import ButtonComponent from "../../atomic-components/button/button.component";
 
-const DEFAULT_IMAGE_PATH = "../../../../assets/images/congratulation/congratulation.gif"
+const DEFAULT_IMAGE_PATH = "../../../../../assets/images/congratulation/congratulation.gif"
 
 const CongratulationComponent = ({ setInitialStateHandler, navigateToCardListHandler }) => {
   return (

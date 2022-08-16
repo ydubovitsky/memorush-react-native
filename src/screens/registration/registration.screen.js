@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ImgBackgroundComponent from "../../common/components/img-background/img-background.component";
-import ButtonComponent from "../../components/sign-in/button.component";
-import TextInputComponent from "../../components/sign-in/text-input.component";
+import ButtonComponent from "../sign-in/atomic-components/button.component";
+import TextInputComponent from "../sign-in/atomic-components/text-input.component";
 import { authSelector, registration } from "../../redux/features/auth/auth-slice";
 import { useSelector, useDispatch } from "react-redux";
 

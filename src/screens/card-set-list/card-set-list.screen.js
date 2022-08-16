@@ -3,11 +3,11 @@ import { FlatList, StyleSheet, View, Text } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from "react-redux";
 import ImgBackgroundComponent from "../../common/components/img-background/img-background.component";
-import AppbarComponent from "../../components/card-set-list/app-bar/app-bar.component";
-import CardSetListItem from "../../components/card-set-list/card-set-list-item/card-set-list-item.component";
-import CardSetTableComponent from "../../components/card-set-list/card-set-table/card-set-table.component";
-import FABGroupComponent from "../../components/card-set-list/FAB-group/FAB-group.component";
-import FavoritesSetListItem from "../../components/card-set-list/favorites-set-list-item/favorites-set-list-item";
+import AppbarComponent from "./components/app-bar/app-bar.component";
+import CardSetListItem from "./components/card-set-list-item/card-set-list-item.component";
+import CardSetTableComponent from "./components/card-set-table/card-set-table.component";
+import FABGroupComponent from "./components/FAB-group/FAB-group.component";
+import FavoritesSetListItem from "./components/favorites-set-list-item/favorites-set-list-item";
 import {
   cardEntitySelector,
   getAllCardSets,
