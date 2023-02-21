@@ -4,6 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { Icon } from 'react-native-elements';
 import ImgBackgroundComponent from '../common/components/img-background/img-background.component';
+import PopupWrapperHOC from '../hoc/popup-wrapper.hoc';
+import AccountScreen from '../screens/account/account.screen';
 import CardSetDetailsScreen from '../screens/card-set-details/card-set-details.screen';
 import CardSetEditScreen from '../screens/card-set-edit/card-set-edit.screen';
 import CardSetInfoScreen from '../screens/card-set-info/card-set-info.screen';
@@ -12,9 +14,6 @@ import LearnCardSetScreen from '../screens/learn-card-set/learn-card-set.screen'
 import RegistrationScreen from '../screens/registration/registration.screen';
 import SettingsScreen from '../screens/settings/settings.screen';
 import SignInScreen from '../screens/sign-in/sign-in.screen';
-import StartLoaderScreen from '../screens/start-loader/start-loader.screen';
-import AccountScreen from '../screens/account/account.screen';
-import PopupWrapperHOC from '../hoc/popup-wrapper.hoc';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -23,8 +22,7 @@ const MainStackNavigator = () => (
   <ImgBackgroundComponent>
     <NavigationContainer>
       <PopupWrapperHOC>
-        <Stack.Navigator initialRouteName="StartLoaderScreen" screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="StartLoaderScreen" component={StartLoaderScreen} />
+        <Stack.Navigator initialRouteName="SignInScreen" screenOptions={{ headerShown: false }}>
           <Stack.Screen name="SignInScreen" component={SignInScreen} />
           <Stack.Screen name="RegistrationScreen" component={RegistrationScreen} />
           <Stack.Screen name="CardSetEditScreen" component={CardSetEditScreen} />
