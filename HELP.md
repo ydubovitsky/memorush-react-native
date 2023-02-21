@@ -23,3 +23,6 @@ https://reactnativeelements.com/docs/1.2.0/icon
 
 ### Free logo maker
 https://www.adobe.com/express/create/logo
+
+### Build project APK (eas build -p android --profile apk)
+https://docs.expo.dev/build-reference/apk/
