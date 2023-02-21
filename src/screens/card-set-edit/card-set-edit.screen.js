@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, View, FlatList } from "react-native";
+import React, { useEffect, useState } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
-import ImgBackgroundComponent from "../../common/components/img-background/img-background.component";
-import CardInputForm from "./atomic-components/card-input-form/card-input-form.component";
-import CardSetInputForm from "./atomic-components/card-set-input-form/card-set-input-form.component";
-import ButtonComponent from "./atomic-components/button/button.component";
 import { useDispatch, useSelector } from 'react-redux';
+import ImgBackgroundComponent from "../../common/components/img-background/img-background.component";
 import {
-  createNewCardSet,
   cardByIdSelector,
+  createNewCardSet,
   deleteCardSet,
   updateCardSet
 } from '../../redux/features/card-set/card-set.slice';
+import ButtonComponent from "./atomic-components/button/button.component";
+import CardInputForm from "./atomic-components/card-input-form/card-input-form.component";
+import CardSetInputForm from "./atomic-components/card-set-input-form/card-set-input-form.component";
 
 const INIT_CARD_SET_STATE = {
   title: "",
@@ -23,6 +23,7 @@ const INIT_CARD_SET_STATE = {
 const CardSetEditScreen = (props) => {
 
   //! Читаем входные параметры
+  //! Если этот параметр передан в компонент, ЭТО ЗНАЧИТ, что компонент будет использоваться для редактирования набора карточек, а не для создания нового набора!
   const cardSetId = props.route.params?.cardSetId;
 
   const dispatch = useDispatch();
@@ -60,48 +61,47 @@ const CardSetEditScreen = (props) => {
     })
   }
 
-  const showActionButtonElements = () => {
-    return (
-      <>
+  //! Если передан cardSetId -> будут отображены кнопки для редактирования, в противном случае кнопки создания
+  const showEditOrCreateSetButtonsEl = () => {
+    if (cardSetId) {
+      return <>
         <ButtonComponent
           style={styles.button}
-          onClickHandler={addFlashCardElement}
-          name="Add new card"
-          color="#18BBF1"
+          onClickHandler={() => dispatch(updateCardSet({ cardSetId, cardSetEntity }))}
+          name="Update"
+          color="#5EBD6D"
         />
-        {/* //TODO Вынести в отдельную функцию! */}
-        {cardSetId
-          ?
-          <>
-            <ButtonComponent
-              style={styles.button}
-              onClickHandler={() => dispatch(updateCardSet({ cardSetId, cardSetEntity }))}
-              name="Update"
-              color="#5EBD6D"
-            />
-            <ButtonComponent
-              style={styles.button}
-              onClickHandler={() => dispatch(deleteCardSet({ cardSetId }))}
-              name="Delete"
-              color="red"
-            />
-          </>
-          :
-          <ButtonComponent
-            style={styles.button}
-            onClickHandler={() => dispatch(createNewCardSet(cardSetEntity))}
-            name="Save"
-            color="#3AE2CE"
-          />
-        }
         <ButtonComponent
-          style={[styles.button, {marginRight: 0}]}
-          onClickHandler={() => props.navigation.navigate("MainTabNavigation")}
-          name="Go Back"
-          color="silver"
+          style={styles.button}
+          onClickHandler={() => dispatch(deleteCardSet({ cardSetId }))}
+          name="Delete"
+          color="red"
         />
       </>
-    )
+    } else {
+      <ButtonComponent
+        style={styles.button}
+        onClickHandler={() => dispatch(createNewCardSet(cardSetEntity))}
+        name="Save"
+        color="#3AE2CE"
+      />
+    }
+  }
+
+  //!TODO Переработать функцию, но имя flashCardArray -> имеет значение, потому что, бэкенд принимает именно это имя
+  const showCardItemCreateFormListEl = () => {
+    //? Тут хитрая структура данных, нужно бы упростить
+    //? [["0", {"backSide": "fsd", "frontSide": ""}], ["1", {"backSide": "4", "frontSide": "123"}]]
+    const el = Object.entries(cardSetEntity.flashCardArray);
+    
+    return el.map((_, idx) => (
+      <CardInputForm
+        id={idx}
+        item={el[1]}
+        cardSetEntity={cardSetEntity}
+        setCardSetEntity={setCardSetEntity}
+      />
+    ))
   }
 
   return (
@@ -110,38 +110,29 @@ const CardSetEditScreen = (props) => {
         <View style={styles.container}>
           <View style={styles.cardSet}>
             <View style={styles.cardSetInfo}>
-              <View style={styles.header}>
+              <ScrollView>
                 <CardSetInputForm
                   values={cardSetEntity}
                   cardSetEntityFormInputHandler={cardSetEntityFormInputHandler}
                 />
-              </View>
-              <View style={styles.cardsContainer}>
-                <FlatList
-                  ItemSeparatorComponent={() => <View
-                    style={{
-                      backgroundColor: 'silver',
-                      height: 1,
-                    }}
-                  />}
-                  //!FIXME Тут тонкий момент, вынести в отдельную функцию?
-                  data={Object.entries(cardSetEntity.flashCardArray)}
-                  renderItem={(data) => (
-                    <CardInputForm
-                      id={data.index}
-                      item={data.item[1]}
-                      cardSetEntity={cardSetEntity}
-                      setCardSetEntity={setCardSetEntity}
-                    />
-                  )
-                  }
-                  keyExtractor={item => item}
-                />
-              </View>
+                {showCardItemCreateFormListEl()}
+              </ScrollView>
             </View>
           </View>
           <View style={styles.buttonsContainer}>
-            {showActionButtonElements()}
+            <ButtonComponent
+              style={styles.button}
+              onClickHandler={addFlashCardElement}
+              name="Add new card"
+              color="#18BBF1"
+            />
+            {showEditOrCreateSetButtonsEl()}
+            <ButtonComponent
+              style={[styles.button, { marginRight: 0 }]}
+              onClickHandler={() => props.navigation.navigate("MainTabNavigation")}
+              name="Go Back"
+              color="silver"
+            />
           </View>
         </View>
       </ImgBackgroundComponent>
@@ -152,11 +143,9 @@ const CardSetEditScreen = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 10,
     flexDirection: "column",
     justifyContent: "space-between",
     backgroundColor: "white",
-    borderRadius: 20,
     overflow: "hidden"
   },
   cardSet: {

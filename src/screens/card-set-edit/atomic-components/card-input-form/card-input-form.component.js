@@ -24,21 +24,21 @@ const CardInputForm = ({ cardSetEntity, setCardSetEntity, id, item }) => {
         mode="outlined"
         style={styles.input}
         label="Front side"
-        value={item.frontSide}
+        value={item?.frontSide}
         onChangeText={text => onChangeHandler("frontSide", text, id)}
       />
       <TextInput
         mode="outlined"
         style={styles.input}
         label="Back side"
-        value={item.backSide}
+        value={item?.backSide}
         onChangeText={text => onChangeHandler("backSide", text, id)}
       />
       <TextInput
         mode="outlined"
         style={[styles.input, styles.description]}
         label="Hint"
-        value={item.hint}
+        value={item?.hint}
         onChangeText={text => onChangeHandler("hint", text, id)}
       />
     </View>
