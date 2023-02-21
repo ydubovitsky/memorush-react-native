@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ImgBackgroundComponent from "../../common/components/img-background/img-background.component";
 import ButtonComponent from "../sign-in/atomic-components/button.component";
@@ -42,53 +42,57 @@ const RegistrationScreen = (props) => {
               source={require(IMAGE_PATH)}
             />
           </View>
-          <View style={styles.inputTextContainer}>
-            <Text>Username</Text>
-            <TextInputComponent
-              placeholder="Username"
-              name="username"
-              formInputHandler={formInputHandler}
-              style={styles.materialStackedLabelTextbox2}
-            >
-            </TextInputComponent>
-            <Text>Password</Text>
-            <TextInputComponent
-              placeholder="Password"
-              name="password"
-              formInputHandler={formInputHandler}
-              style={styles.materialStackedLabelTextbox3}
-            >
-            </TextInputComponent>
-            <Text>Password confirmation</Text>
-            <TextInputComponent
-              placeholder="Confirm password"
-              name="password2"
-              formInputHandler={formInputHandler}
-              style={styles.materialStackedLabelTextbox3}
-            >
-            </TextInputComponent>
-            <Text>Email(Optional)</Text>
-            <TextInputComponent
-              placeholder="Email"
-              name="email"
-              formInputHandler={formInputHandler}
-              style={styles.materialStackedLabelTextbox3}
-            >
-            </TextInputComponent>
-          </View>
-          <View style={styles.buttonsContainer}>
-            <ButtonComponent
-              style={styles.button}
-              name="Register"
-              onClickHandler={onRegisterFormHandler}
-            >
-            </ButtonComponent>
-            <ButtonComponent
-              style={styles.button}
-              name="Go back"
-              onClickHandler={() => props.navigation.navigate("SignInScreen")}
-            >
-            </ButtonComponent>
+          <View style={styles.scrollViewContainer}>
+            <ScrollView>
+              <View style={styles.inputTextContainer}>
+                <Text>Username</Text>
+                <TextInputComponent
+                  placeholder="Username"
+                  name="username"
+                  formInputHandler={formInputHandler}
+                  style={styles.materialStackedLabelTextbox2}
+                >
+                </TextInputComponent>
+                <Text>Password</Text>
+                <TextInputComponent
+                  placeholder="Password"
+                  name="password"
+                  formInputHandler={formInputHandler}
+                  style={styles.materialStackedLabelTextbox3}
+                >
+                </TextInputComponent>
+                <Text>Password confirmation</Text>
+                <TextInputComponent
+                  placeholder="Confirm password"
+                  name="password2"
+                  formInputHandler={formInputHandler}
+                  style={styles.materialStackedLabelTextbox3}
+                >
+                </TextInputComponent>
+                <Text>Email(Optional)</Text>
+                <TextInputComponent
+                  placeholder="Email"
+                  name="email"
+                  formInputHandler={formInputHandler}
+                  style={styles.materialStackedLabelTextbox3}
+                >
+                </TextInputComponent>
+              </View>
+              <View style={styles.buttonsContainer}>
+                <ButtonComponent
+                  style={styles.button}
+                  name="Register"
+                  onClickHandler={onRegisterFormHandler}
+                >
+                </ButtonComponent>
+                <ButtonComponent
+                  style={styles.button}
+                  name="Go back"
+                  onClickHandler={() => props.navigation.navigate("SignInScreen")}
+                >
+                </ButtonComponent>
+              </View>
+            </ScrollView>
           </View>
         </View>
       </SafeAreaView>
@@ -113,6 +117,9 @@ const styles = StyleSheet.create({
     height: "100%",
     resizeMode: 'contain',
   },
+  scrollViewContainer: {
+    flex: 5
+  },
   inputTextContainer: {
     flex: 4,
     flexDirection: "column",
@@ -132,7 +139,8 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   button: {
-    height: "25%"
+    height: 35,
+    marginBottom: 10
   },
   text: {
     color: "white",
