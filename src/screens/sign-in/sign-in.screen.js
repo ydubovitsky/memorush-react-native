@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
-import ImgBackgroundComponent from "../../common/components/img-background/img-background.component";
-import ButtonComponent from "./atomic-components/button.component";
-import TextInputComponent from "./atomic-components/text-input.component";
+import { useDispatch, useSelector } from "react-redux";
 import { authSelector, login } from "../../redux/features/auth/auth-slice";
-import { useSelector, useDispatch } from "react-redux";
+import ButtonComponent from "../../common/components/button/button.component";
+import TextInputComponent from "./atomic-components/text-input.component";
 
 const IMAGE_PATH = "../../../assets/images/logo/logo.png";
 
@@ -33,52 +32,50 @@ const SignInScreen = (props) => {
   }
 
   return (
-    <ImgBackgroundComponent>
-      <SafeAreaView style={{ flex: 1 }}>
-        <View style={styles.container}>
-          <View style={styles.logoContainer}>
-            <Image
-              style={styles.tinyLogo}
-              source={require(IMAGE_PATH)}
-            />
-          </View>
-          <View style={styles.scrollViewContainer}>
-            <ScrollView>
-              <View style={styles.inputTextContainer}>
-                <Text>Username</Text>
-                <TextInputComponent
-                  placeholder="Username"
-                  name="username"
-                  formInputHandler={formInputHandler}
-                >
-                </TextInputComponent>
-                <Text>Password</Text>
-                <TextInputComponent
-                  placeholder="Password"
-                  name="password"
-                  formInputHandler={formInputHandler}
-                >
-                </TextInputComponent>
-              </View>
-              <View style={styles.buttonsContainer}>
-                <ButtonComponent
-                  style={[styles.button]}
-                  name="Sign In"
-                  onClickHandler={onLoginFormHandler}
-                >
-                </ButtonComponent>
-                <ButtonComponent
-                  style={styles.button}
-                  name="Registration"
-                  onClickHandler={() => props.navigation.navigate("RegistrationScreen")}
-                >
-                </ButtonComponent>
-              </View>
-            </ScrollView>
-          </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.container}>
+        <View style={styles.logoContainer}>
+          <Image
+            style={styles.tinyLogo}
+            source={require(IMAGE_PATH)}
+          />
         </View>
-      </SafeAreaView>
-    </ImgBackgroundComponent>
+        <View style={styles.scrollViewContainer}>
+          <ScrollView>
+            <View style={styles.inputTextContainer}>
+              <Text>Username</Text>
+              <TextInputComponent
+                placeholder="Username"
+                name="username"
+                formInputHandler={formInputHandler}
+              >
+              </TextInputComponent>
+              <Text>Password</Text>
+              <TextInputComponent
+                placeholder="Password"
+                name="password"
+                formInputHandler={formInputHandler}
+              >
+              </TextInputComponent>
+            </View>
+            <View style={styles.buttonsContainer}>
+              <ButtonComponent
+                style={[styles.button]}
+                name="Sign In"
+                onClickHandler={onLoginFormHandler}
+              >
+              </ButtonComponent>
+              <ButtonComponent
+                style={styles.button}
+                name="Registration"
+                onClickHandler={() => props.navigation.navigate("RegistrationScreen")}
+              >
+              </ButtonComponent>
+            </View>
+          </ScrollView>
+        </View>
+      </View>
+    </SafeAreaView>
   );
 }
 
