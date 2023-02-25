@@ -24,5 +24,11 @@ https://reactnativeelements.com/docs/1.2.0/icon
 ### Free logo maker
 https://www.adobe.com/express/create/logo
 
+### Free gif
+https://lottiefiles.com/featured
+
 ### Build project APK (eas build -p android --profile apk)
 https://docs.expo.dev/build-reference/apk/
+
+### Use .env
+https://dev.to/bhatvikrant/how-to-add-environment-variables-in-a-react-native-project-with-ts-2ne5

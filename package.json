@@ -10,6 +10,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@expo/html-elements": "^0.4.1",
     "@react-navigation/bottom-tabs": "^6.3.2",
     "@react-navigation/drawer": "^6.4.3",
     "@react-navigation/native": "^6.0.11",
@@ -19,10 +20,12 @@
     "expo": "^47.0.13",
     "expo-font": "~11.0.1",
     "expo-speech": "~11.0.0",
+    "expo-splash-screen": "^0.18.1",
     "expo-status-bar": "~1.4.0",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-native": "0.70.5",
+    "react-native-dotenv": "^3.4.8",
     "react-native-elements": "^3.4.2",
     "react-native-gesture-handler": "~2.8.0",
     "react-native-paper": "^4.12.3",
