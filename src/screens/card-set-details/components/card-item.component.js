@@ -40,10 +40,10 @@ const CardItemComponent = ({ item, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    minHeight: 300,
+    minHeight: 200,
     paddingBottom: 10,
     marginVertical: 8,
-    borderRadius: 20,
+    borderRadius: 10,
     backgroundColor: "white",
     shadowColor: "#000",
     shadowOffset: {
