@@ -9,7 +9,8 @@ const CardSetInfoScreen = ({ route, navigation }) => {
 
   const { cardSetId } = route.params;
   const {
-    title,
+    name,
+    category,
     isFavorite,
     createdAt,
     updatedAt,
@@ -20,8 +21,9 @@ const CardSetInfoScreen = ({ route, navigation }) => {
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
       <ImgBackgroundComponent>
         <View style={styles.container}>
-          <Text style={styles.text}>Title: {title}</Text>
-          <Text style={styles.text}>Count of flashcards: {flashCardArray.length}</Text>
+          <Text style={styles.text}>Title: {name}</Text>
+          <Text style={styles.text}>Category: {category}</Text>
+          <Text style={styles.text}>Count of flashcards: {flashCardArray?.length}</Text>
           <Text style={styles.text}>Is favorite: {isFavorite ? "Yes" : "No"}</Text>
           <Text style={styles.text}>Created at: {createdAt}</Text>
           <Text style={styles.text}>Updated at: {updatedAt}</Text>
@@ -35,10 +37,8 @@ const styles = StyleSheet.create({
   container: {
     margin: 10,
     padding: 30,
-    alignItems: "center",
-    justifyContent: "center",
     backgroundColor: "white",
-    borderRadius: 20,
+    borderRadius: 10,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -50,7 +50,6 @@ const styles = StyleSheet.create({
     minWidth: 88,
   },
   text: {
-    textAlign: "center",
     fontSize: 16
   }
 });

@@ -1,9 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
-const ButtonComponent = ({ style, name, onClickHandler, color }) => {
+const ButtonComponent = ({ style, name, onClickHandler, color, isDisabled=false }) => {
   return (
     <TouchableOpacity
+      disabled={isDisabled}
       style={[styles.container, style, { backgroundColor: color }]}
       onPress={onClickHandler}
     >

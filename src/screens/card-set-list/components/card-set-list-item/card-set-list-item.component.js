@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { ImageBackground, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { Icon } from 'react-native-elements'
-import { setFavoriteCardSet } from '../../../../redux/features/card-set/card-set.slice';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Icon } from 'react-native-elements';
 import { useDispatch } from 'react-redux';
-
-const DEFAULT_IMAGE_PATH = "../../../../../assets/images/flash-card-set/jukebox-print-FUohNQatzVs-unsplash.jpg";
+import { setFavoriteCardSet } from '../../../../redux/features/card-set/card-set.slice';
+import { cutStringIfLengthMoreThan } from '../../../../utils/string.utils';
 
 const CardSetListItem = ({ item, navigation }) => {
 
   const {
     id,
-    title,
+    name,
+    categoryName,
     flashCardArray,
     description,
     isFavorite,
@@ -26,24 +26,15 @@ const CardSetListItem = ({ item, navigation }) => {
         "CardSetDetailsTabNavigation",
         {
           cardSetId: id,
-          cardSetName: title
+          cardSetName: name
         })}
     >
-      <ImageBackground
-        source={require(DEFAULT_IMAGE_PATH)}
-        resizeMode="cover"
-        imageStyle={{
-          borderTopRightRadius: 20,
-          borderTopLeftRadius: 20
-        }}
-        style={styles.image}
-      >
-        <Text style={styles.text}>{title}</Text>
-      </ImageBackground>
+      <Text style={styles.text}>{name}</Text>
     </TouchableOpacity>
     <View style={styles.info}>
       <View style={styles.cardInfo}>
-        <Text>Cards count: {flashCardArray.length}</Text>
+        <Text>Cards: {flashCardArray?.length}</Text>
+        <Text>Category: {cutStringIfLengthMoreThan(7, categoryName)}</Text>
         <Text>Created: {createdAt}</Text>
         <Icon
           raised
@@ -55,7 +46,7 @@ const CardSetListItem = ({ item, navigation }) => {
         />
       </View>
       <View style={styles.cardDescription}>
-        <Text>Description: {description || "I'll fill it out later"}</Text>
+        <Text>Description: {cutStringIfLengthMoreThan(15, description) || "I'll fill it out later"}</Text>
       </View>
     </View>
   </View>
@@ -65,10 +56,10 @@ const CardSetListItem = ({ item, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    minHeight: 300,
-    paddingBottom: 10,
+    padding: 10,
+    minHeight: 250,
     marginVertical: 8,
-    borderRadius: 20,
+    borderRadius: 10,
     backgroundColor: "white",
     shadowColor: "#000",
     shadowOffset: {
@@ -96,10 +87,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 40,
-    color: "white",
-    textShadowColor: 'rgba(0, 0, 0, 0.85)',
-    textShadowOffset: { width: -2, height: 2 },
-    textShadowRadius: 10
   },
   info: {
     flex: 1,
@@ -115,7 +102,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around'
   },
   cardDescription: {
-    flex: 1
+    flex: 1,
   }
 })
 

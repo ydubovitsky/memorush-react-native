@@ -1,29 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, StyleSheet, View, Text } from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from "react-redux";
 import ImgBackgroundComponent from "../../common/components/img-background/img-background.component";
-import AppbarComponent from "./components/app-bar/app-bar.component";
-import CardSetListItem from "./components/card-set-list-item/card-set-list-item.component";
-import CardSetTableComponent from "./components/card-set-table/card-set-table.component";
-import FABGroupComponent from "./components/FAB-group/FAB-group.component";
-import FavoritesSetListItem from "./components/favorites-set-list-item/favorites-set-list-item";
 import {
   cardEntitySelector,
   getAllCardSets,
-  cardSetFavoriteSelector
+  filterCardSetByNameSelector
 } from "../../redux/features/card-set/card-set.slice";
+import FABGroupComponent from "./components/FAB-group/FAB-group.component";
+import AppbarComponent from "./components/app-bar/app-bar.component";
+import CardSetListItem from "./components/card-set-list-item/card-set-list-item.component";
+import CardSetTableComponent from "./components/card-set-table/card-set-table.component";
+import FavoriteCardSetListComponent from "./components/favorite-card-set-list/favorite-card-set-list.component";
+import { useIsFocused } from "@react-navigation/native";
 
 const CardSetListScreen = (props) => {
 
+  const isFocused = useIsFocused();
   const dispatch = useDispatch();
-  const cardEntity = useSelector(cardEntitySelector);
-  const cardSetFavorites = useSelector(cardSetFavoriteSelector);
+  const [searchTextString, setSearchTextString] = useState("");
+  const cardEntity = useSelector(state => filterCardSetByNameSelector(state, searchTextString))
   const [toggleCardsView, setToggleCardsView] = useState(true);
 
   useEffect(() => {
     dispatch(getAllCardSets());
-  }, []);
+  }, [isFocused]);
 
   const fetchCardSetsDataHandler = () => {
     dispatch(getAllCardSets());
@@ -43,31 +45,12 @@ const CardSetListScreen = (props) => {
       />
   )
 
-  const showFavoritesCardsetElements = () => {
-    return (
-      cardSetFavorites.length > 0
-        ?
-        <FlatList
-          data={cardSetFavorites}
-          horizontal
-          renderItem={(data) => <FavoritesSetListItem item={data.item} />}
-          keyExtractor={item => item.id}
-        />
-        :
-        <View style={styles.favoritesPlaceholder}>
-          <Text>You don't have any favorite sets yet 😉</Text>
-        </View>
-    )
-  }
-
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
       <ImgBackgroundComponent>
-        <AppbarComponent
-          cardViewToggleHandler={() => setToggleCardsView(!toggleCardsView)}
-        />
+        <AppbarComponent cardViewToggleHandler={() => setToggleCardsView(!toggleCardsView)} setSearchTextString={searchTextString} setSearchTextString={setSearchTextString}/>
         <View style={styles.favoritesList}>
-          {showFavoritesCardsetElements()}
+          <FavoriteCardSetListComponent navigation={props.navigation}/>
         </View>
         <View style={styles.cardSetListContainer}>
           {showCardsElement()}
@@ -96,23 +79,6 @@ const styles = StyleSheet.create({
     flex: 4,
     padding: 10,
     flexDirection: "row"
-  },
-  favoritesPlaceholder: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 20,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1
-    },
-    shadowOpacity: 0.15,
-    shadowRadius: 2,
-    elevation: 1,
-    minWidth: 88,
-    paddingLeft: 16,
-    paddingRight: 16
   }
 })
 

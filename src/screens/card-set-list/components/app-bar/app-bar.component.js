@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Appbar } from 'react-native-paper';
 import { StyleSheet, TextInput, View, Text } from 'react-native';
-import { Icon } from 'react-native-elements'
+import { Icon } from 'react-native-elements';
+import { filterCardSetByNameSelector } from '../../../../redux/features/card-set/card-set.slice';
 
-const AppbarComponent = ({ cardViewToggleHandler }) => {
+const AppbarComponent = ({ cardViewToggleHandler, searchTextString, setSearchTextString }) => {
 
-  const [text, onChangeText] = React.useState();
 
   return (
     <Appbar.Header
@@ -23,9 +23,9 @@ const AppbarComponent = ({ cardViewToggleHandler }) => {
           </Text>
           <TextInput
             style={styles.inputField}
-            onChangeText={onChangeText}
+            onChangeText={setSearchTextString}
             placeholder="Search..."
-            value={text}
+            value={searchTextString}
           />
         </View>
         <View style={styles.icons}>
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "whitesmoke",
-    borderRadius: 20,
+    borderRadius: 10,
     paddingLeft: 20,
     paddingRight: 20
   },

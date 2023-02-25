@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { TextInput } from 'react-native-paper';
 
 const CardInputForm = ({ cardSetEntity, setCardSetEntity, id, item }) => {
@@ -24,21 +24,21 @@ const CardInputForm = ({ cardSetEntity, setCardSetEntity, id, item }) => {
         mode="outlined"
         style={styles.input}
         label="Front side"
-        value={item?.frontSide}
+        value={item.frontSide}
         onChangeText={text => onChangeHandler("frontSide", text, id)}
       />
       <TextInput
         mode="outlined"
         style={styles.input}
         label="Back side"
-        value={item?.backSide}
+        value={item.backSide}
         onChangeText={text => onChangeHandler("backSide", text, id)}
       />
       <TextInput
         mode="outlined"
         style={[styles.input, styles.description]}
         label="Hint"
-        value={item?.hint}
+        value={item.hint}
         onChangeText={text => onChangeHandler("hint", text, id)}
       />
     </View>
@@ -48,7 +48,7 @@ const CardInputForm = ({ cardSetEntity, setCardSetEntity, id, item }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
-    borderRadius: 20,
+    borderRadius: 10,
     marginVertical: 10,
     margin: 10,
     padding: 10

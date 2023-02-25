@@ -14,10 +14,12 @@ import CardInputForm from "./atomic-components/card-input-form/card-input-form.c
 import CardSetInputForm from "./atomic-components/card-set-input-form/card-set-input-form.component";
 
 const INIT_CARD_SET_STATE = {
-  title: "",
+  name: "",
   tags: "",
+  categoryName: "",
   description: "",
-  flashCardArray: {}
+  flashCardArray: {
+  }
 }
 
 const CardSetEditScreen = (props) => {
@@ -36,8 +38,9 @@ const CardSetEditScreen = (props) => {
   useEffect(() => {
     if (cardSetId != null && cardSetById != null) {
       setCardSetEntity({
-        title: cardSetById.title,
+        name: cardSetById.name,
         tags: cardSetById.tags,
+        categoryName: cardSetById.categoryName,
         description: cardSetById.description,
         flashCardArray: { ...cardSetById.flashCardArray }
       })
@@ -56,17 +59,26 @@ const CardSetEditScreen = (props) => {
       ...cardSetEntity,
       flashCardArray: {
         ...cardSetEntity.flashCardArray,
-        [Object.keys(cardSetEntity.flashCardArray).length]: {}
+        [Object.keys(cardSetEntity.flashCardArray)?.length]: {}
       }
     })
   }
 
+  const isCardSetValidDataHandler = () => {
+    if(cardSetEntity.name?.length > 0 && cardSetEntity.categoryName?.length > 0) {
+      return false
+    }
+    return true;
+  }
+
   //! Если передан cardSetId -> будут отображены кнопки для редактирования, в противном случае кнопки создания
   const showEditOrCreateSetButtonsEl = () => {
-    if (cardSetId) {
+    if (cardSetId != undefined) {
       return <>
         <ButtonComponent
           style={styles.button}
+          //! Проверка, если пользователь не задал имя набора, он не сможет его сохранить или обновить
+          isDisabled={isCardSetValidDataHandler()}
           onClickHandler={() => dispatch(updateCardSet({ cardSetId, cardSetEntity }))}
           name="Update"
           color="#5EBD6D"
@@ -79,8 +91,10 @@ const CardSetEditScreen = (props) => {
         />
       </>
     } else {
-      <ButtonComponent
+      return <ButtonComponent
         style={styles.button}
+        //! Проверка, если пользователь не задал имя набора, он не сможет его сохранить или обновить
+        isDisabled={isCardSetValidDataHandler()}
         onClickHandler={() => dispatch(createNewCardSet(cardSetEntity))}
         name="Save"
         color="#3AE2CE"
@@ -93,11 +107,12 @@ const CardSetEditScreen = (props) => {
     //? Тут хитрая структура данных, нужно бы упростить
     //? [["0", {"backSide": "fsd", "frontSide": ""}], ["1", {"backSide": "4", "frontSide": "123"}]]
     const el = Object.entries(cardSetEntity.flashCardArray);
-    
+
     return el.map((_, idx) => (
       <CardInputForm
+        key={idx}
         id={idx}
-        item={el[1]}
+        item={el[idx][1]}
         cardSetEntity={cardSetEntity}
         setCardSetEntity={setCardSetEntity}
       />
@@ -156,7 +171,7 @@ const styles = StyleSheet.create({
   },
   cardSetInfo: {
     flex: 5,
-    borderRadius: 20,
+    borderRadius: 10,
   },
   header: {
   },

@@ -55,7 +55,7 @@ const LearnCardSetScreen = ({ route, navigation }) => {
   }
 
   const navigateToCardListHandler = () => {
-    navigation.navigate(cardSet.title);
+    navigation.navigate(cardSet.name);
   }
 
   const showLearnCardViewElement = () => (
@@ -120,7 +120,6 @@ const LearnCardSetScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
   },
   learnViewContainer: {
     flex: 1,
@@ -128,8 +127,6 @@ const styles = StyleSheet.create({
   workArea: {
     flex: 5,
     backgroundColor: "white",
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20
   },
   cardContainer: {
     flex: 7
@@ -139,8 +136,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     overflow: "hidden",
-    borderBottomEndRadius: 20,
-    borderBottomStartRadius: 20
   },
   action: {
     flex: 1,

@@ -13,7 +13,7 @@ const CardSetTableComponent = ({ cardEntity, navigation }) => {
 
     const {
       id,
-      title,
+      name,
       flashCardArray,
       isFavorite
     } = card;
@@ -23,7 +23,7 @@ const CardSetTableComponent = ({ cardEntity, navigation }) => {
         "CardSetDetailsTabNavigation",
         {
           cardSetId: id,
-          cardSetName: title
+          cardSetName: name
         })
     }
 
@@ -37,7 +37,7 @@ const CardSetTableComponent = ({ cardEntity, navigation }) => {
           style={styles.row}
           onPress={navigateHandler}
         >
-          {card.title}
+          {card.name}
         </DataTable.Cell>
         <DataTable.Cell style={styles.row} numeric>{flashCardArray.length}</DataTable.Cell>
         <DataTable.Cell style={styles.row}>
@@ -74,7 +74,7 @@ const CardSetTableComponent = ({ cardEntity, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
-    borderRadius: 20,
+    borderRadius: 10,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
