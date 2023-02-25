@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { HelperText } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import ImgBackgroundComponent from "../../common/components/img-background/img-background.component";
-import ButtonComponent from "../sign-in/atomic-components/button.component";
-import TextInputComponent from "../sign-in/atomic-components/text-input.component";
+import { useDispatch, useSelector } from "react-redux";
 import { authSelector, registration } from "../../redux/features/auth/auth-slice";
-import { useSelector, useDispatch } from "react-redux";
+import ButtonComponent from "../../common/components/button/button.component";
+import TextInputComponent from "../sign-in/atomic-components/text-input.component";
 
 const IMAGE_PATH = "../../../assets/images/logo/logo.png";
 
@@ -32,71 +32,78 @@ const RegistrationScreen = (props) => {
     dispatch(registration(formData));
   }
 
+  const validateEmailHandler = () => {
+    if (formData != undefined && formData.email != undefined) {
+      return formData?.email.includes("@") ? 0 : 1;
+    }
+  }
+
   return (
-    <ImgBackgroundComponent>
-      <SafeAreaView style={{ flex: 1 }}>
-        <View style={styles.container}>
-          <View style={styles.ellipseContainer}>
-            <Image
-              style={styles.tinyLogo}
-              source={require(IMAGE_PATH)}
-            />
-          </View>
-          <View style={styles.scrollViewContainer}>
-            <ScrollView>
-              <View style={styles.inputTextContainer}>
-                <Text>Username</Text>
-                <TextInputComponent
-                  placeholder="Username"
-                  name="username"
-                  formInputHandler={formInputHandler}
-                  style={styles.materialStackedLabelTextbox2}
-                >
-                </TextInputComponent>
-                <Text>Password</Text>
-                <TextInputComponent
-                  placeholder="Password"
-                  name="password"
-                  formInputHandler={formInputHandler}
-                  style={styles.materialStackedLabelTextbox3}
-                >
-                </TextInputComponent>
-                <Text>Password confirmation</Text>
-                <TextInputComponent
-                  placeholder="Confirm password"
-                  name="password2"
-                  formInputHandler={formInputHandler}
-                  style={styles.materialStackedLabelTextbox3}
-                >
-                </TextInputComponent>
-                <Text>Email(Optional)</Text>
-                <TextInputComponent
-                  placeholder="Email"
-                  name="email"
-                  formInputHandler={formInputHandler}
-                  style={styles.materialStackedLabelTextbox3}
-                >
-                </TextInputComponent>
-              </View>
-              <View style={styles.buttonsContainer}>
-                <ButtonComponent
-                  style={styles.button}
-                  name="Register"
-                  onClickHandler={onRegisterFormHandler}
-                >
-                </ButtonComponent>
-                <ButtonComponent
-                  style={styles.button}
-                  name="Go back"
-                  onClickHandler={() => props.navigation.navigate("SignInScreen")}
-                >
-                </ButtonComponent>
-              </View>
-            </ScrollView>
-          </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.container}>
+        <View style={styles.ellipseContainer}>
+          <Image
+            style={styles.tinyLogo}
+            source={require(IMAGE_PATH)}
+          />
         </View>
-      </SafeAreaView>
-    </ImgBackgroundComponent>
+        <View style={styles.scrollViewContainer}>
+          <ScrollView>
+            <View style={styles.inputTextContainer}>
+              <Text>Username</Text>
+              <TextInputComponent
+                placeholder="Username"
+                name="username"
+                formInputHandler={formInputHandler}
+                style={styles.materialStackedLabelTextbox2}
+              >
+              </TextInputComponent>
+              <Text>Password</Text>
+              <TextInputComponent
+                placeholder="Password"
+                name="password"
+                formInputHandler={formInputHandler}
+                style={styles.materialStackedLabelTextbox3}
+              >
+              </TextInputComponent>
+              <Text>Password confirmation</Text>
+              <TextInputComponent
+                placeholder="Confirm password"
+                name="password2"
+                formInputHandler={formInputHandler}
+                style={styles.materialStackedLabelTextbox3}
+              >
+              </TextInputComponent>
+              <Text>Email(Optional)</Text>
+              <TextInputComponent
+                placeholder="Email"
+                name="email"
+                formInputHandler={formInputHandler}
+                style={styles.materialStackedLabelTextbox3}
+              >
+              </TextInputComponent>
+              <HelperText type="error" visible={validateEmailHandler()}>
+                Invalid email address
+              </HelperText>
+            </View>
+            <View style={styles.buttonsContainer}>
+              <ButtonComponent
+                style={styles.button}
+                name="Register"
+                onClickHandler={onRegisterFormHandler}
+              >
+              </ButtonComponent>
+              <ButtonComponent
+                style={styles.button}
+                name="Go back"
+                onClickHandler={() => props.navigation.navigate("SignInScreen")}
+              >
+              </ButtonComponent>
+            </View>
+          </ScrollView>
+        </View>
+      </View>
+    </SafeAreaView>
   );
 }
 
@@ -144,9 +151,6 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "white",
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10
   }
 });
 
