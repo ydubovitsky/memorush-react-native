@@ -87,6 +87,7 @@ const MainTabNavigation = () => (
 const CardSetDetailsTabNavigation = (args) => {
 
   //TODO Упростить это место!
+  //! У набора карточек обязательно должно быть имя, иначе этот кусок кода сломается!
   const { cardSetId, cardSetName } = args.route.params;
 
   return (
@@ -94,7 +95,8 @@ const CardSetDetailsTabNavigation = (args) => {
       screenOptions={{ headerShown: false }}
     >
       <Tab.Screen
-        name={cardSetName}
+        // || " " -> это заглушка, на случай того, если пользователь как то попытался перейти в набор у которого нет имени
+        name={cardSetName || " "}
         component={CardSetDetailsScreen}
         initialParams={{ cardSetId }}
         options={{
