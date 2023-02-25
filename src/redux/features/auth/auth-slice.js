@@ -28,9 +28,7 @@ export const updateUserData = createAsyncThunk('auth/updateUserData', async (arg
   const state = getState();
   const token = state.auth.authEntity.token;
 
-  const payload = {
-    method: 'PUT',
-    url: `${BASE_URL}/api/v1/user/updateUserData`,
+  const response = await axios.put(`${BASE_URL}/api/v1/user/updateUserData`, {
     data: {
       ...arg,
       username: state.auth.authEntity.username
@@ -40,8 +38,8 @@ export const updateUserData = createAsyncThunk('auth/updateUserData', async (arg
       'Accept': 'application/json',
       'Authorization': token
     }
-  }
-  const response = await fetchDataService(payload);
+  });
+
   return response.data;
 });
 
