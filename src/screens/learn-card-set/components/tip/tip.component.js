@@ -16,12 +16,12 @@ const TipComponent = ({ setIsStarted, navigateToCardListHandler }) => {
       <View style={styles.buttonsContainer}>
         <ButtonComponent
           name="Start"
-          style={[styles.button, { borderBottomStartRadius: 20, backgroundColor: "#5EBD6D" }]}
+          style={[styles.button, { backgroundColor: "#5EBD6D" }]}
           onClickHandler={() => setIsStarted(true)}
         />
         <ButtonComponent
           name="Go back"
-          style={[styles.button, { marginRight: 0, borderBottomEndRadius: 20 }]}
+          style={[styles.button, { marginRight: 0 }]}
           onClickHandler={navigateToCardListHandler}
         />
       </View>
@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
-    borderRadius: 20,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -46,16 +45,16 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flex: 7,
+    padding: 15,
     justifyContent: "space-around",
-    alignItems: "center",
   },
   title: {
     fontSize: 30,
-    marginBottom: 20
+    marginBottom: 20,
   },
   text: {
     fontSize: 20,
-    textAlign: "center"
+    textAlign: "left"
   },
   buttonsContainer: {
     flex: 1,
