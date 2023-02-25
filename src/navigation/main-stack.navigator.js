@@ -12,7 +12,7 @@ import CardSetInfoScreen from '../screens/card-set-info/card-set-info.screen';
 import CardSetListScreen from '../screens/card-set-list/card-set-list.screen';
 import LearnCardSetScreen from '../screens/learn-card-set/learn-card-set.screen';
 import RegistrationScreen from '../screens/registration/registration.screen';
-import SettingsScreen from '../screens/settings/settings.screen';
+import InfoScreen from '../screens/info/info.screen';
 import SignInScreen from '../screens/sign-in/sign-in.screen';
 
 const Stack = createNativeStackNavigator();
@@ -68,7 +68,7 @@ const MainTabNavigation = () => (
     />
     <Tab.Screen
       name="Info"
-      component={SettingsScreen}
+      component={InfoScreen}
       options={{
         tabBarIcon: () => (
           <Icon
