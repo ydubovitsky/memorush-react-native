@@ -30,6 +30,7 @@ export const createNewCardSet = createAsyncThunk('card/create', async (arg, { ge
     url: `${BASE_URL}/api/v1/card-set/add`,
     data: {
       ...arg,
+      tags: arg.tags.split(","),
       flashCardArray: Object.values(arg.flashCardArray)
     },
     headers: {
@@ -50,8 +51,10 @@ export const updateCardSet = createAsyncThunk('card/update', async (arg, { getSt
   const payload = {
     method: 'PUT',
     url: `${BASE_URL}/api/v1/card-set/update/${cardSetId}`,
+    //! Вынести в отдельный метод формирование data
     data: {
       ...cardSetEntity,
+      tags: cardSetEntity.tags.split(","), // Строка тэгов разбивается по символу ',' на массив 
       flashCardArray: Object.values(cardSetEntity.flashCardArray)
     },
     headers: {
@@ -207,3 +210,11 @@ export const getSortedCardByCardSetSelector = state => {
 export const cardSetFavoriteSelector = state => (
   state.cardSet.cardEntity.filter(card => card.isFavorite === true)
 );
+
+export const filterCardSetByNameSelector = (state, name) => {
+  if(name.length > 0) {
+    return state.cardSet.cardEntity.filter(entity => entity.name.includes(name))
+  } else {
+    return state.cardSet.cardEntity;
+  }
+}
