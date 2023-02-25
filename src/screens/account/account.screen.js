@@ -1,16 +1,34 @@
-import React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { ScrollView, StyleSheet, Text, View, Button } from "react-native";
+import { Avatar, HelperText, TextInput } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Avatar } from 'react-native-paper';
-import ImgBackgroundComponent from "../../common/components/img-background/img-background.component";
 import { useSelector } from "react-redux";
-import { authEntitySelector } from "../../redux/features/auth/auth-slice";
-import { cardEntitySelector } from "../../redux/features/card-set/card-set.slice";
+import ImgBackgroundComponent from "../../common/components/img-background/img-background.component";
+import { authEntitySelector, updateUserData } from "../../redux/features/auth/auth-slice";
+import ButtonComponent from "../../common/components/button/button.component";
 
 const AccountScreen = () => {
 
+  const dispatch = useDispatch();
   const { username } = useSelector(authEntitySelector);
-  const cardEntity = useSelector(cardEntitySelector);
+
+  const [passwordEntity, setPasswordEntity] = useState({
+    oldPassword: '',
+    newPassword: '',
+    passwordConfirm: '',
+  })
+
+  const updateUserDataHandler = () => {
+    dispatch(updateUserData({
+      password: passwordEntity.newPassword,
+      password2: passwordEntity.passwordConfirm
+    }))
+  }
+
+  const validatePasswordHandler = () => {
+    return passwordEntity.newPassword !== passwordEntity.passwordConfirm || passwordEntity.newPassword.length < 7 ? 1 : 0;
+  }
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
@@ -22,53 +40,74 @@ const AccountScreen = () => {
               icon="account"
               backgroundColor="#24B9E9"
             />
-            <Text style={styles.userTitle}>Hello 👋, {username}!</Text>
+            <Text style={styles.userTitle}>Hello, {username}</Text>
           </View>
-          <View style={styles.statistic}>
-            <Text style={styles.text}>You have {cardEntity.length} CardSets in your pocket!</Text>
-            <Text style={styles.text}>🥳</Text>
+          <View style={styles.scrollViewContainer}>
+            <ScrollView>
+              <View style={styles.settingsLabel}>
+                <Text style={styles.settingsLabelText}>Settings</Text>
+              </View>
+              <View style={styles.accountSettings}>
+                <Text>Old password</Text>
+                <TextInput onChangeText={text => setPasswordEntity({
+                  ...passwordEntity,
+                  oldPassword: text
+                })} />
+                <Text>New password</Text>
+                <TextInput onChangeText={text => setPasswordEntity({
+                  ...passwordEntity,
+                  newPassword: text
+                })} />
+                <Text>Confirm password</Text>
+                <TextInput onChangeText={text => setPasswordEntity({
+                  ...passwordEntity,
+                  passwordConfirm: text
+                })} />
+                <HelperText type="error" visible={validatePasswordHandler()}>
+                  Password must be more than 8 characters
+                </HelperText>
+                <ButtonComponent onClickHandler={updateUserDataHandler} name="Update" style={styles.button}/>
+              </View>
+            </ScrollView>
           </View>
         </View>
       </ImgBackgroundComponent>
-    </SafeAreaView>
+    </SafeAreaView >
   )
 }
 
 //TODO Стилизовать нормально
 const styles = StyleSheet.create({
   container: {
-    margin: 10,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "white",
-    borderRadius: 20,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 2,
-    elevation: 3,
-    minWidth: 88,
+    flex: 1,
+    justifyContent: "flex-start",
   },
   accountInfo: {
-    padding: 20,
-    flexDirection: "row",
+    flex: 1,
+    padding: 10,
     alignItems: "center",
-    justifyContent: "space-between",
   },
   userTitle: {
     fontSize: 30,
-    padding: 20,
+    padding: 10,
   },
-  statistic: {
-    padding: 20,
+  scrollViewContainer: {
+    flex: 1.5,
   },
-  text: {
-    textAlign: "center",
-    fontSize: 16
-  }
+  settingsLabel: {
+    alignItems: "center",
+  },
+  settingsLabelText: {
+    fontSize: 20
+  },
+  accountSettings: {
+    flex: 2,
+    padding: 10,
+  },
+  button: {
+    height: 35,
+    marginBottom: 10
+  },
 })
 
 export default AccountScreen;
