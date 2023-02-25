@@ -1,13 +1,14 @@
 import React from "react";
 import { ImageBackground, StyleSheet, View } from "react-native";
 
-const IMG_PATH = "../../../../assets/images/backgrounds/background11.jpg"
+const IMG_PATH = "./images/background.png"
 
+//!TODO Может потом добавить другую
 const ImgBackgroundComponent = (props) => (
   <View style={styles.container}>
     <ImageBackground
       source={require(IMG_PATH)}
-      resizeMode="stretch"
+      resizeMode="cover"
       style={styles.image}
     >
       {props.children}
@@ -18,6 +19,7 @@ const ImgBackgroundComponent = (props) => (
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "whitesmoke"
   },
   image: {
     flex: 1,
