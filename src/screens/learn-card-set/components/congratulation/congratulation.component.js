@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, Text, ImageBackground } from "react-native";
 import ButtonComponent from "../../atomic-components/button/button.component";
 
-const DEFAULT_IMAGE_PATH = "../../../../../assets/images/congratulation/congratulation.gif"
+const DEFAULT_IMAGE_PATH = "./images/10519-confetti-customized.gif"
 
 const CongratulationComponent = ({ setInitialStateHandler, navigateToCardListHandler }) => {
   return (
@@ -14,7 +14,7 @@ const CongratulationComponent = ({ setInitialStateHandler, navigateToCardListHan
           style={styles.image}
         >
           <View style={styles.textContainer}>
-            <Text style={styles.text}>Congratulation! You learned all words from this set!</Text>
+            <Text style={styles.text}>Congratulation! You have learned all words from this set!</Text>
           </View>
         </ImageBackground>
       </View>
@@ -25,7 +25,7 @@ const CongratulationComponent = ({ setInitialStateHandler, navigateToCardListHan
           onClickHandler={navigateToCardListHandler}
         />
         <ButtonComponent
-          style={[styles.button, {backgroundColor: "#5EBD6D"}]}
+          style={[styles.button, {backgroundColor: "#5EBD6D", marginRight: 0}]}
           name="Repeat Again"
           onClickHandler={setInitialStateHandler}
         />
@@ -52,21 +52,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   text: {
-    color: "white",
-    fontSize: 50,
+    fontSize: 30,
     textAlign: "center",
-    textShadowColor: 'rgba(0, 0, 0, 0.95)',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 20
   },
   buttonContainer: {
     flex: 1,
     flexDirection: "row",
+    justifyContent: "center",
   },
   button: {
     flex: 1,
-    margin: 5,
-    borderRadius: 20
+    marginRight: 5,
   }
 })
 
