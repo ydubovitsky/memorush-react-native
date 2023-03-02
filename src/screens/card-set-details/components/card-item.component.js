@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import SpeakerIconComponent from '../../../common/components/speaker-icon/speaker-icon.component';
-
-const DEFAULT_IMAGE_PATH = "../../../../assets/images/flash-card-set/nordwood-themes-R53t-Tg6J4c-unsplash (1).jpg";
 
 const CardItemComponent = ({ item, navigation }) => {
 
@@ -18,17 +16,7 @@ const CardItemComponent = ({ item, navigation }) => {
       onPress={changeCardSideHandler}
     >
       <View style={styles.description}>
-        <ImageBackground
-          source={require(DEFAULT_IMAGE_PATH)}
-          resizeMode="cover"
-          imageStyle={{
-            borderTopRightRadius: 20,
-            borderTopLeftRadius: 20
-          }}
-          style={styles.image}
-        >
           <Text style={styles.text}>{isFrontSide ? item.frontSide : item.backSide}</Text>
-        </ImageBackground>
       </View>
       <View style={styles.info}>
         <SpeakerIconComponent text={item.frontSide} />
