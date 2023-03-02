@@ -6,7 +6,7 @@ import { authSelector, login } from "../../redux/features/auth/auth-slice";
 import ButtonComponent from "../../common/components/button/button.component";
 import TextInputComponent from "./atomic-components/text-input.component";
 
-const IMAGE_PATH = "../../../assets/images/logo/logo.png";
+const IMAGE_PATH = "./images/adaptive-icon.png";
 
 const SignInScreen = (props) => {
 

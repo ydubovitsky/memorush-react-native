@@ -7,7 +7,7 @@ import { authSelector, registration } from "../../redux/features/auth/auth-slice
 import ButtonComponent from "../../common/components/button/button.component";
 import TextInputComponent from "../sign-in/atomic-components/text-input.component";
 
-const IMAGE_PATH = "../../../assets/images/logo/logo.png";
+const IMAGE_PATH = "./images/adaptive-icon.png";
 
 const RegistrationScreen = (props) => {
 
