@@ -32,9 +32,21 @@ const RegistrationScreen = (props) => {
     dispatch(registration(formData));
   }
 
-  const validateEmailHandler = () => {
-    if (formData != undefined && formData.email != undefined) {
-      return formData?.email.includes("@") ? 0 : 1;
+  const validateUsernameHandler = () => {
+    if (formData != undefined && formData.username != undefined) {
+      return formData?.username.length < 1;
+    }
+  }
+
+  const validatePasswordHandler = () => {
+    if (formData != undefined && formData.password != undefined) {
+      return formData?.password.length < 5;
+    }
+  }
+
+  const validatePassword2Handler = () => {
+    if (formData != undefined && formData.password != undefined && formData.password2 != undefined) {
+      return formData?.password !== formData?.password2;
     }
   }
 
@@ -50,52 +62,50 @@ const RegistrationScreen = (props) => {
         <View style={styles.scrollViewContainer}>
           <ScrollView>
             <View style={styles.inputTextContainer}>
-              <Text>Username</Text>
+              <Text>Пользователь</Text>
               <TextInputComponent
-                placeholder="Username"
+                placeholder="Пользователь"
                 name="username"
                 formInputHandler={formInputHandler}
                 style={styles.materialStackedLabelTextbox2}
               >
               </TextInputComponent>
-              <Text>Password</Text>
+              <HelperText type="error" visible={validateUsernameHandler()}>
+                Некорректное имя пользователя
+              </HelperText>
+              <Text>Пароль</Text>
               <TextInputComponent
-                placeholder="Password"
+                placeholder="Пароль"
                 name="password"
                 formInputHandler={formInputHandler}
                 style={styles.materialStackedLabelTextbox3}
               >
               </TextInputComponent>
-              <Text>Password confirmation</Text>
+              <HelperText type="error" visible={validatePasswordHandler()}>
+                Введите более надежный пароль
+              </HelperText>
+              <Text>Введите пароль повторно</Text>
               <TextInputComponent
-                placeholder="Confirm password"
+                placeholder="Пароль"
                 name="password2"
                 formInputHandler={formInputHandler}
                 style={styles.materialStackedLabelTextbox3}
               >
               </TextInputComponent>
-              <Text>Email(Optional)</Text>
-              <TextInputComponent
-                placeholder="Email"
-                name="email"
-                formInputHandler={formInputHandler}
-                style={styles.materialStackedLabelTextbox3}
-              >
-              </TextInputComponent>
-              <HelperText type="error" visible={validateEmailHandler()}>
-                Invalid email address
+              <HelperText type="error" visible={validatePassword2Handler()}>
+                Ваши пароли не совпадают
               </HelperText>
             </View>
             <View style={styles.buttonsContainer}>
               <ButtonComponent
                 style={styles.button}
-                name="Register"
+                name="Зарегистрироваться"
                 onClickHandler={onRegisterFormHandler}
               >
               </ButtonComponent>
               <ButtonComponent
                 style={styles.button}
-                name="Go back"
+                name="Перейти обратно"
                 onClickHandler={() => props.navigation.navigate("SignInScreen")}
               >
               </ButtonComponent>
