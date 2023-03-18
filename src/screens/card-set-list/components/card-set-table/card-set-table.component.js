@@ -57,9 +57,9 @@ const CardSetTableComponent = ({ cardEntity, navigation }) => {
     <View style={styles.container}>
       <DataTable>
         <DataTable.Header>
-          <DataTable.Title style={styles.row}>Card set name</DataTable.Title>
-          <DataTable.Title style={styles.row} numeric>Total Cards</DataTable.Title>
-          <DataTable.Title style={styles.row} numeric>Favorite</DataTable.Title>
+          <DataTable.Title style={styles.row}>Название набора</DataTable.Title>
+          <DataTable.Title style={styles.row} numeric>Количество карточек</DataTable.Title>
+          <DataTable.Title style={styles.row} numeric>Избранный набор?</DataTable.Title>
         </DataTable.Header>
         <FlatList
           data={cardEntity}

@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from "react-native";
 const EmptySetInformerComponent = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Oops, nothing here.</Text>
+      <Text style={styles.text}>Упс, а тут ничего нет...</Text>
     </View>
   )
 }

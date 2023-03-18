@@ -80,13 +80,13 @@ const CardSetEditScreen = (props) => {
           //! Проверка, если пользователь не задал имя набора, он не сможет его сохранить или обновить
           isDisabled={isCardSetValidDataHandler()}
           onClickHandler={() => dispatch(updateCardSet({ cardSetId, cardSetEntity }))}
-          name="Update"
+          name="Обновить"
           color="#5EBD6D"
         />
         <ButtonComponent
           style={styles.button}
           onClickHandler={() => dispatch(deleteCardSet({ cardSetId }))}
-          name="Delete"
+          name="Удалить"
           color="red"
         />
       </>
@@ -96,7 +96,7 @@ const CardSetEditScreen = (props) => {
         //! Проверка, если пользователь не задал имя набора, он не сможет его сохранить или обновить
         isDisabled={isCardSetValidDataHandler()}
         onClickHandler={() => dispatch(createNewCardSet(cardSetEntity))}
-        name="Save"
+        name="Сохранить"
         color="#3AE2CE"
       />
     }
@@ -138,14 +138,14 @@ const CardSetEditScreen = (props) => {
             <ButtonComponent
               style={styles.button}
               onClickHandler={addFlashCardElement}
-              name="Add new card"
+              name="Добавить"
               color="#18BBF1"
             />
             {showEditOrCreateSetButtonsEl()}
             <ButtonComponent
               style={[styles.button, { marginRight: 0 }]}
               onClickHandler={() => props.navigation.navigate("MainTabNavigation")}
-              name="Go Back"
+              name="Назад"
               color="silver"
             />
           </View>

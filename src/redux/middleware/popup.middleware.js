@@ -2,7 +2,7 @@ import { showPopup } from "../features/popup/popup.slice";
 
 const POPUP_PROPERTIES = {
   loginFulfilled: {
-    message: "You have successfully logged in",
+    message: "Вы успешно вошли",
     styles: {
       color: "white",
       backgroundColor: "red"
@@ -15,56 +15,56 @@ const POPUP_PROPERTIES = {
     }
   },
   invalidateLoggedInUser: {
-    message: "You are logged out from your account",
+    message: "Вы вышли из вашей учетной записи",
     styles: {
       color: "white",
       backgroundColor: "#4BE066"
     }
   },
   cardCreateFulfilled: {
-    message: "Card set successfully created",
+    message: "Набор карточек успешно создан",
     styles: {
       color: "white",
       backgroundColor: "#01C9F7"
     }
   },
   cardDeleteFulfilled: {
-    message: "Card set successfully deleted",
+    message: "Набор карточек удален",
     styles: {
       color: "white",
       backgroundColor: "#4BE066"
     }
   },
   updateUserDataUpdated: {
-    message: "User data successfully updated",
+    message: "Данные пользователя обновлены",
     styles: {
       color: "white",
       backgroundColor: "#4BE066"
     }
   },
   authRegistrationFulfilled: {
-    message: "Congratulation! You have registered successfully yet. Now, you can come in!",
+    message: "Поздравляем! Вы успешно зарегистрировались, теперь вы можете войти",
     styles: {
       color: "white",
       backgroundColor: "#4BE066"
     }
   },
   updateUserDataRejected: {
-    message: "User data updating error",
+    message: "При обновлении данных возникла ошибка",
     styles: {
       color: "white",
       backgroundColor: "red"
     }
   },
   setFavoriteFulfilled: {
-    message: "Favorite!",
+    message: "Избранное!",
     styles: {
       color: "white",
       backgroundColor: "#4BE066"
     }
   },
   updateCardSetFulfilled: {
-    message: "Cardset updated!",
+    message: "Набор карточек обновлен!",
     styles: {
       color: "white",
       backgroundColor: "#4BE066"

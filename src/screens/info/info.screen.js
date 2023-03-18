@@ -1,25 +1,36 @@
-import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import React, { useCallback } from "react";
+import { StyleSheet, View, Text, Linking } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ImgBackgroundComponent from "../../common/components/img-background/img-background.component";
-import { A } from '@expo/html-elements';
+
+const URL = URL;
 
 const InfoScreen = () => {
+
+  const openWebsiteInBrowserHandler = useCallback(async () => {
+    const supported = await Linking.canOpenURL(URL);
+    if (supported) {
+      await Linking.openURL(URL);
+    } else {
+      Alert.alert(`Don't know how to open this URL: ${URL}`);
+    }
+  }, [URL]);
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
       <ImgBackgroundComponent>
         <View style={styles.container}>
           <Text style={styles.text}>
-            Memorush are effective tools for both learning and studying when they’re used correctly.
+            Memorush — это эффективные инструменты как для обучения, так и для учебы, если их правильно использовать.
           </Text>
           <Text style={styles.text}>
-            Whether it's memorizing for a test or learning a new language, Memorush app helps you learn better, not longer.</Text>
+            Флэш-карты — невероятно полезный инструмент, помогающий запомнить все. Вы должны использовать их, независимо от того, учитесь ли вы программировать, готовитесь к экзамену или даже делаете публичные выступления.</Text>
           <Text style={styles.text}>
-            Whether you’re a student or a life-long learner, flashcards are a terrific way to remember information and keep the mind sharp.</Text>
+            Независимо от того, являетесь ли вы студентом или учитесь всю жизнь, карточки — отличный способ запомнить информацию и сохранить остроту ума.</Text>
           <Text style={styles.text}>
-            For more information, visit our website:</Text>
-          <Text style={styles.link}>
-            <A href="https://memorush.ru">www.memorush.ru</A>
+            Для более детальной информации, посетите наш официальный веб сайт:</Text>
+          <Text style={styles.link} onPress={openWebsiteInBrowserHandler}>
+            https://memorush.ru
           </Text>
         </View>
       </ImgBackgroundComponent>
@@ -48,13 +59,13 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: "left",
-    fontSize: 20
+    fontSize: 16
   },
   link: {
     textAlign: "left",
     color: "#28A0DC",
     textDecorationLine: "underline",
-    fontSize: 22
+    fontSize: 16
   }
 });
 

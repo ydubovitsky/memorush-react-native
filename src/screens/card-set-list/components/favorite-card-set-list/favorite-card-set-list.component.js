@@ -21,7 +21,7 @@ const FavoriteCardSetListComponent = ({navigation}) => {
         />
         :
         <View style={styles.favoritesPlaceholder}>
-          <Text>You don't have any favorite sets yet 😉</Text>
+          <Text>Пока у вас нет любимых наборов 😉</Text>
         </View>}
     </View>
   )

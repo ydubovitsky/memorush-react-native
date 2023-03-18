@@ -8,7 +8,7 @@ const ButtonComponent = ({ style, name, onClickHandler, color, isDisabled=false 
       style={[styles.container, style, { backgroundColor: color }]}
       onPress={onClickHandler}
     >
-      <Text style={styles.text}>{name}</Text>
+      <Text numberOfLines={1} style={styles.text}>{name}</Text>
     </TouchableOpacity>
   );
 }
@@ -32,9 +32,9 @@ const styles = StyleSheet.create({
     paddingRight: 16
   },
   text: {
+    textAlign: "left",
     color: "#fff",
     fontSize: 16,
-    textAlign: "justify"
   }
 });
 

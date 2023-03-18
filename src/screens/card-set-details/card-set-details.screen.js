@@ -14,7 +14,7 @@ const CardSetDetailsScreen = ({ route, navigation }) => {
   const cardSet = useSelector(state => cardByIdSelector(state, cardSetId));
 
   const navigateToCardScreen = () => {
-    navigation.navigate("Cards");
+    navigation.navigate("Наборы");
   }
 
   return (

@@ -21,12 +21,12 @@ const CardSetInfoScreen = ({ route, navigation }) => {
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
       <ImgBackgroundComponent>
         <View style={styles.container}>
-          <Text style={styles.text}>Title: {name}</Text>
-          <Text style={styles.text}>Category: {category}</Text>
-          <Text style={styles.text}>Count of flashcards: {flashCardArray?.length}</Text>
-          <Text style={styles.text}>Is favorite: {isFavorite ? "Yes" : "No"}</Text>
-          <Text style={styles.text}>Created at: {createdAt}</Text>
-          <Text style={styles.text}>Updated at: {updatedAt}</Text>
+          <Text style={styles.text}>Название: {name}</Text>
+          <Text style={styles.text}>Категория: {category}</Text>
+          <Text style={styles.text}>Количество карточек в наборе: {flashCardArray?.length}</Text>
+          <Text style={styles.text}>Избранный набор? {isFavorite ? "Да" : "Нет"}</Text>
+          <Text style={styles.text}>Создан: {createdAt}</Text>
+          <Text style={styles.text}>Обновлен: {updatedAt}</Text>
         </View>
       </ImgBackgroundComponent>
     </SafeAreaView>

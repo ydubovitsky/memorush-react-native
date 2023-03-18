@@ -104,17 +104,17 @@ const LearnCardSetScreen = ({ route, navigation }) => {
             <ButtonComponent
               style={[styles.action, { backgroundColor: "#5EBD6D" }]}
               onClickHandler={knowCardHandler}
-              name="I know it">
+              name="Знаю">
             </ButtonComponent>
             <ButtonComponent
               style={[styles.action, { backgroundColor: "#FD8344" }]}
               onClickHandler={toggleHintVisibleHandler}
-              name="Show me hint"
+              name="Показать подсказку"
             >
             </ButtonComponent>
             <ButtonComponent
               style={[styles.action, { marginRight: 0, backgroundColor: "#FC1444" }]}
-              name="I dont't know"
+              name="Не знаю"
               onClickHandler={dontKnowCardHandler}>
             </ButtonComponent>
           </View>

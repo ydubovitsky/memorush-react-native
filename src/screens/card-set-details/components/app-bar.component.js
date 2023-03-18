@@ -31,7 +31,7 @@ const AppbarComponent = ({ navigateToCardScreen }) => {
           <TextInput
             style={styles.inputField}
             onChangeText={onChangeText}
-            placeholder="Search..."
+            placeholder="Искать..."
             value={text}
           />
         </View>

@@ -40,33 +40,33 @@ const AccountScreen = () => {
               icon="account"
               backgroundColor="#24B9E9"
             />
-            <Text style={styles.userTitle}>Hello, {username}</Text>
+            <Text style={styles.userTitle}>Здравствуй, {username}</Text>
           </View>
           <View style={styles.scrollViewContainer}>
             <ScrollView>
               <View style={styles.settingsLabel}>
-                <Text style={styles.settingsLabelText}>Settings</Text>
+                <Text style={styles.settingsLabelText}>Настройки</Text>
               </View>
               <View style={styles.accountSettings}>
-                <Text>Old password</Text>
+                <Text>Старый пароль</Text>
                 <TextInput onChangeText={text => setPasswordEntity({
                   ...passwordEntity,
                   oldPassword: text
                 })} />
-                <Text>New password</Text>
+                <Text>Новый пароль</Text>
                 <TextInput onChangeText={text => setPasswordEntity({
                   ...passwordEntity,
                   newPassword: text
                 })} />
-                <Text>Confirm password</Text>
+                <Text>Введите новый пароль повторно</Text>
                 <TextInput onChangeText={text => setPasswordEntity({
                   ...passwordEntity,
                   passwordConfirm: text
                 })} />
                 <HelperText type="error" visible={validatePasswordHandler()}>
-                  Password must be more than 8 characters
+                  Пароль должен быть длиннее чем 8 символов
                 </HelperText>
-                <ButtonComponent onClickHandler={updateUserDataHandler} name="Update" style={styles.button}/>
+                <ButtonComponent onClickHandler={updateUserDataHandler} name="Обновить данные" style={styles.button}/>
               </View>
             </ScrollView>
           </View>

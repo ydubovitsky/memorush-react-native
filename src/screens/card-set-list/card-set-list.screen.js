@@ -1,19 +1,18 @@
+import { useIsFocused } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from "react-redux";
 import ImgBackgroundComponent from "../../common/components/img-background/img-background.component";
 import {
-  cardEntitySelector,
-  getAllCardSets,
-  filterCardSetByNameSelector
+  filterCardSetByNameSelector,
+  getAllCardSets
 } from "../../redux/features/card-set/card-set.slice";
 import FABGroupComponent from "./components/FAB-group/FAB-group.component";
 import AppbarComponent from "./components/app-bar/app-bar.component";
 import CardSetListItem from "./components/card-set-list-item/card-set-list-item.component";
 import CardSetTableComponent from "./components/card-set-table/card-set-table.component";
 import FavoriteCardSetListComponent from "./components/favorite-card-set-list/favorite-card-set-list.component";
-import { useIsFocused } from "@react-navigation/native";
 
 const CardSetListScreen = (props) => {
 

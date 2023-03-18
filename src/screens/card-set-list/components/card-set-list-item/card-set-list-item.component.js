@@ -33,9 +33,9 @@ const CardSetListItem = ({ item, navigation }) => {
     </TouchableOpacity>
     <View style={styles.info}>
       <View style={styles.cardInfo}>
-        <Text>Cards: {flashCardArray?.length}</Text>
-        <Text>Category: {cutStringIfLengthMoreThan(7, categoryName)}</Text>
-        <Text>Created: {createdAt}</Text>
+        <Text>Карточки: {flashCardArray?.length}</Text>
+        <Text>Категория: {cutStringIfLengthMoreThan(7, categoryName)}</Text>
+        <Text>Создан: {createdAt}</Text>
         <Icon
           raised
           name='heart'
@@ -46,7 +46,7 @@ const CardSetListItem = ({ item, navigation }) => {
         />
       </View>
       <View style={styles.cardDescription}>
-        <Text>Description: {cutStringIfLengthMoreThan(15, description) || "I'll fill it out later"}</Text>
+        <Text>Описание: {cutStringIfLengthMoreThan(15, description) || "Заполню позже..."}</Text>
       </View>
     </View>
   </View>

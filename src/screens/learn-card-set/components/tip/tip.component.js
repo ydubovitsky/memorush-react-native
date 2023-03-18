@@ -6,21 +6,21 @@ const TipComponent = ({ setIsStarted, navigateToCardListHandler }) => {
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
-        <Text style={styles.title}>How does this work?!</Text>
-        <Text style={styles.text}>1. Look at a card. When you are ready, click the "See Answer" button.</Text>
-        <Text style={styles.text}>2. You can see a backside of each card if click on it</Text>
-        <Text style={styles.text}>3. Click "I know it!" or "I don`t know it".</Text>
-        <Text style={styles.text}>4. When you will learn all cards, you will see congratulation popup</Text>
-        <Text style={styles.text}>5. In the end you can repeat one more time or return to main menu</Text>
+        <Text style={styles.title}>Как работает тренажер?</Text>
+        <Text style={styles.text}>1. Выберите необходимое количество кругов для повторения</Text>
+        <Text style={styles.text}>2. Посмотрите на карточку, если вы знаете перевод, нажмите кнопку «Знаю», в противном случае «Не знаю»</Text>
+        <Text style={styles.text}>3. Вы можете перевернуть карточку, чтобы увидеть заднюю сторону, просто нажав на нее</Text>
+        <Text style={styles.text}>4. Когда вы выучите все карточки, вы увидите сообщение с поздравлением</Text>
+        <Text style={styles.text}>5. В конце вы можете повторить слова еще раз или выбрать другой набор</Text>
       </View>
       <View style={styles.buttonsContainer}>
         <ButtonComponent
-          name="Start"
+          name="Начать"
           style={[styles.button, { backgroundColor: "#5EBD6D" }]}
           onClickHandler={() => setIsStarted(true)}
         />
         <ButtonComponent
-          name="Go back"
+          name="Назад"
           style={[styles.button, { marginRight: 0 }]}
           onClickHandler={navigateToCardListHandler}
         />
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   text: {
-    fontSize: 20,
+    fontSize: 16,
     textAlign: "left"
   },
   buttonsContainer: {

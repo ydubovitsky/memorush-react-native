@@ -40,7 +40,7 @@ const MainTabNavigation = () => (
     screenOptions={{ headerShown: false }}
   >
     <Tab.Screen
-      name="Cards"
+      name="Наборы"
       component={CardSetListScreen}
       options={{
         tabBarIcon: () => (
@@ -53,7 +53,7 @@ const MainTabNavigation = () => (
         )
       }} />
     <Tab.Screen
-      name="Account"
+      name="Аккаунт"
       component={AccountScreen}
       options={{
         tabBarIcon: () => (
@@ -67,7 +67,7 @@ const MainTabNavigation = () => (
       }}
     />
     <Tab.Screen
-      name="Info"
+      name="Информация"
       component={InfoScreen}
       options={{
         tabBarIcon: () => (
@@ -111,7 +111,7 @@ const CardSetDetailsTabNavigation = (args) => {
           )
         }} />
       <Tab.Screen
-        name="Learn"
+        name="Учить"
         component={LearnCardSetScreen}
         initialParams={{ cardSetId }}
         options={{
@@ -126,7 +126,7 @@ const CardSetDetailsTabNavigation = (args) => {
         }}
       />
       <Tab.Screen
-        name="Edit"
+        name="Редактировать"
         component={CardSetEditScreen}
         initialParams={{ cardSetId }}
         options={{
@@ -141,7 +141,7 @@ const CardSetDetailsTabNavigation = (args) => {
         }}
       />
       <Tab.Screen
-        name="Info"
+        name="Инфо"
         component={CardSetInfoScreen}
         initialParams={{ cardSetId }}
         options={{

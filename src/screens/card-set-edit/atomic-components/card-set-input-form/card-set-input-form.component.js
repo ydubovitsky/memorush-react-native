@@ -18,34 +18,34 @@ const CardSetInputForm = ({ cardSetEntityFormInputHandler, values }) => {
       <TextInput
         mode="outlined"
         style={styles.input}
-        label="Title"
+        label="Название"
         value={values.name}
         onChangeText={text => cardSetEntityFormInputHandler("name", text)}
       />
       <HelperText type="error" visible={validateTitleHandler()}>
-        Title length must be greater than 0
+        Название должно быть длиннее 0
       </HelperText>
       <TextInput
         mode="outlined"
         style={styles.input}
-        label="Category"
+        label="Категория"
         value={values.categoryName}
         onChangeText={text => cardSetEntityFormInputHandler("categoryName", text)}
       />
       <HelperText type="error" visible={validateCategoryHandler()}>
-        Category name must be greater than 0
+        Имя категории должно длиннее 0
       </HelperText>
       <TextInput
         mode="outlined"
         style={styles.input}
-        label="Tags(Optional, comma separated)"
+        label="Тэги(Опционально, через запятую)"
         value={values.tags}
         onChangeText={text => cardSetEntityFormInputHandler("tags", text)}
       />
       <TextInput
         mode="outlined"
         style={[styles.input, styles.description]}
-        label="Description"
+        label="Описание"
         value={values.description}
         onChangeText={text => cardSetEntityFormInputHandler("description", text)}
       />

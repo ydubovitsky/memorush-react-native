@@ -43,16 +43,16 @@ const SignInScreen = (props) => {
         <View style={styles.scrollViewContainer}>
           <ScrollView>
             <View style={styles.inputTextContainer}>
-              <Text>Username</Text>
+              <Text>Имя пользователя</Text>
               <TextInputComponent
-                placeholder="Username"
+                placeholder="Имя пользователя"
                 name="username"
                 formInputHandler={formInputHandler}
               >
               </TextInputComponent>
-              <Text>Password</Text>
+              <Text>Пароль</Text>
               <TextInputComponent
-                placeholder="Password"
+                placeholder="Пароль"
                 name="password"
                 formInputHandler={formInputHandler}
               >
@@ -61,13 +61,13 @@ const SignInScreen = (props) => {
             <View style={styles.buttonsContainer}>
               <ButtonComponent
                 style={[styles.button]}
-                name="Sign In"
+                name="Войти"
                 onClickHandler={onLoginFormHandler}
               >
               </ButtonComponent>
               <ButtonComponent
                 style={styles.button}
-                name="Registration"
+                name="Зарегистрироваться"
                 onClickHandler={() => props.navigation.navigate("RegistrationScreen")}
               >
               </ButtonComponent>

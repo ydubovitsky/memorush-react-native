@@ -19,25 +19,25 @@ const CardInputForm = ({ cardSetEntity, setCardSetEntity, id, item }) => {
 
   return (
     <View style={[styles.container]}>
-      <Text>Flashcard № {id + 1}</Text>
+      <Text>Карточка № {id + 1}</Text>
       <TextInput
         mode="outlined"
         style={styles.input}
-        label="Front side"
+        label="Передняя сторона"
         value={item.frontSide}
         onChangeText={text => onChangeHandler("frontSide", text, id)}
       />
       <TextInput
         mode="outlined"
         style={styles.input}
-        label="Back side"
+        label="Задняя сторона"
         value={item.backSide}
         onChangeText={text => onChangeHandler("backSide", text, id)}
       />
       <TextInput
         mode="outlined"
         style={[styles.input, styles.description]}
-        label="Hint"
+        label="Подсказка"
         value={item.hint}
         onChangeText={text => onChangeHandler("hint", text, id)}
       />

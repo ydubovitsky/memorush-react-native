@@ -27,18 +27,18 @@ const FABGroupComponent = ({ navigation, fetchCardSetsDataHandler }) => {
             //TODO Добавить логику
             {
               icon: 'logout',
-              label: 'Log out',
+              label: 'Выйти',
               onPress: invalidateUserHandler,
             },
             {
-              icon: 'plus',
-              label: 'Create new set',
-              onPress: () => navigation.navigate("CardSetEditScreen"),
+              icon: 'sync',
+              label: 'Синхронизировать данные',
+              onPress: fetchCardSetsDataHandler,
             },
             {
-              icon: 'sync',
-              label: 'Synchronize data',
-              onPress: fetchCardSetsDataHandler,
+              icon: 'plus',
+              label: 'Создать новый набор карточек',
+              onPress: () => navigation.navigate("CardSetEditScreen"),
             },
           ]}
           onStateChange={onStateChange}

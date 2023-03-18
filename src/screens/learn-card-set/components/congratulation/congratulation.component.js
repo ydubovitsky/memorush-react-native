@@ -14,19 +14,19 @@ const CongratulationComponent = ({ setInitialStateHandler, navigateToCardListHan
           style={styles.image}
         >
           <View style={styles.textContainer}>
-            <Text style={styles.text}>Congratulation! You have learned all words from this set!</Text>
+            <Text style={styles.text}>Ура! Вы выучили все слова из этого набора!</Text>
           </View>
         </ImageBackground>
       </View>
       <View style={styles.buttonContainer}>
         <ButtonComponent
           style={styles.button}
-          name="Go Back"
+          name="Назад"
           onClickHandler={navigateToCardListHandler}
         />
         <ButtonComponent
           style={[styles.button, {backgroundColor: "#5EBD6D", marginRight: 0}]}
-          name="Repeat Again"
+          name="Повторить"
           onClickHandler={setInitialStateHandler}
         />
       </View>
