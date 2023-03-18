@@ -109,7 +109,7 @@ const LearnCardSetScreen = ({ route, navigation }) => {
             <ButtonComponent
               style={[styles.action, { backgroundColor: "#FD8344" }]}
               onClickHandler={toggleHintVisibleHandler}
-              name="Показать подсказку"
+              name="Подсказка"
             >
             </ButtonComponent>
             <ButtonComponent
