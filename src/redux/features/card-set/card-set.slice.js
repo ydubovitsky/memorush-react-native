@@ -30,7 +30,7 @@ export const createNewCardSet = createAsyncThunk('card/create', async (arg, { ge
     url: `${BASE_URL}/api/v1/card-set/add`,
     data: {
       ...arg,
-      tags: arg.tags.split(","),
+      tags: argToArrayBySplitter(arg.tags, ","),
       flashCardArray: Object.values(arg.flashCardArray)
     },
     headers: {
@@ -54,7 +54,7 @@ export const updateCardSet = createAsyncThunk('card/update', async (arg, { getSt
     //! Вынести в отдельный метод формирование data
     data: {
       ...cardSetEntity,
-      tags: cardSetEntity.tags.split(","), // Строка тэгов разбивается по символу ',' на массив 
+      tags: argToArrayBySplitter(cardSetEntity.tags, ","),
       flashCardArray: Object.values(cardSetEntity.flashCardArray)
     },
     headers: {
@@ -218,4 +218,17 @@ export const filterCardSetByNameSelector = (state, name) => {
   } else {
     return state.cardSet.cardEntity;
   }
+}
+
+//------------------------------------ Utils ------------------------------------
+
+//! Проблема этого метода в том, что аргумент может быть как массивом, так и строкой! Нужно переработать структуру данных
+const argToArrayBySplitter = (string, splitter) => {
+  if(Array.isArray(string)) {
+    return string;
+  }
+  if(string != undefined && string != "") {
+    return string.split(splitter);
+  }
+  return Array.of("");
 }

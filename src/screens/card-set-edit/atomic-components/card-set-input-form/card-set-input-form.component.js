@@ -12,6 +12,16 @@ const CardSetInputForm = ({ cardSetEntityFormInputHandler, values }) => {
     return values.categoryName.length == 0;
   }
 
+  //!TODO Поправить на фронте и бэке; разные типы данных
+  const tagArrayToString = (tagArray) => (
+    Array.isArray(tagArray) ? tagArray.join() : ''
+  )
+
+  //!TODO Поправить на фронте и бэке; разные типы данных
+  const tagStringToArrayBySeparator = (tagString, separator) => (
+    tagString.split(separator)
+  )
+
   return (
     <View style={styles.container}>
       <Text>CREATE A NEW FLASHCARD SET</Text>
@@ -30,17 +40,17 @@ const CardSetInputForm = ({ cardSetEntityFormInputHandler, values }) => {
         style={styles.input}
         label="Категория"
         value={values.categoryName}
+        //! Вынести в отдельные функции-обработчики
         onChangeText={text => cardSetEntityFormInputHandler("categoryName", text)}
       />
       <HelperText type="error" visible={validateCategoryHandler()}>
-        Имя категории должно длиннее 0
       </HelperText>
       <TextInput
         mode="outlined"
         style={styles.input}
         label="Тэги(Опционально, через запятую)"
-        value={values.tags}
-        onChangeText={text => cardSetEntityFormInputHandler("tags", text)}
+        value={tagArrayToString(values.tags)}
+        onChangeText={text => cardSetEntityFormInputHandler("tags", tagStringToArrayBySeparator(text, ","))}
       />
       <TextInput
         mode="outlined"
