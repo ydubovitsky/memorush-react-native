@@ -1,20 +1,19 @@
 import React, { useCallback } from "react";
+import { REACT_APP_OFFICIAL_SITE_URL } from "@env"
 import { StyleSheet, View, Text, Linking } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ImgBackgroundComponent from "../../common/components/img-background/img-background.component";
 
-const URL = URL;
-
 const InfoScreen = () => {
 
   const openWebsiteInBrowserHandler = useCallback(async () => {
-    const supported = await Linking.canOpenURL(URL);
+    const supported = await Linking.canOpenURL(REACT_APP_OFFICIAL_SITE_URL);
     if (supported) {
-      await Linking.openURL(URL);
+      await Linking.openURL(REACT_APP_OFFICIAL_SITE_URL);
     } else {
-      Alert.alert(`Don't know how to open this URL: ${URL}`);
+      Alert.alert(`Don't know how to open this URL: ${REACT_APP_OFFICIAL_SITE_URL}`);
     }
-  }, [URL]);
+  }, [REACT_APP_OFFICIAL_SITE_URL]);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
@@ -59,13 +58,13 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: "left",
-    fontSize: 16
+    fontSize: 17
   },
   link: {
     textAlign: "left",
     color: "#28A0DC",
     textDecorationLine: "underline",
-    fontSize: 16
+    fontSize: 17
   }
 });
 
