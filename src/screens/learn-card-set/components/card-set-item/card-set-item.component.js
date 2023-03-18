@@ -20,7 +20,7 @@ const CardSetItemComponent = ({ isHintVisible, item = {} }) => {
       </View>
       <View style={styles.info}>
         <SpeakerIconComponent text={item.frontSide} />
-        {isHintVisible ? <Text style={{ fontSize: 24 }}>Hint: {item.hint}</Text> : null}
+        {isHintVisible ? <Text style={{ fontSize: 24 }}>Подсказка: {item.hint}</Text> : null}
       </View>
     </TouchableOpacity>
   );
