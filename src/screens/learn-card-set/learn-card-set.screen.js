@@ -1,118 +1,144 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSelector } from "react-redux";
-import ImgBackgroundComponent from "../../common/components/img-background/img-background.component";
 import ButtonComponent from "./atomic-components/button/button.component";
 import CardSetItemComponent from "./components/card-set-item/card-set-item.component";
 import CongratulationComponent from "./components/congratulation/congratulation.component";
 import ProgressBarComponent from "./components/progress-bar/progress-bar.component";
 import TipComponent from "./components/tip/tip.component";
-import { cardByIdSelector } from "../../redux/features/card-set/card-set.slice";
+import {
+  flashCardArrayFromCardSetWithIdSelector,
+  cardByIdSelector
+} from "../../redux/features/card-set/card-set.slice";
+import DialogComponent from "./components/dialog/dialog.component";
+import { Provider } from "react-native-paper";
 
 const LearnCardSetScreen = ({ route, navigation }) => {
 
   const { cardSetId } = route.params;
 
-  const [isHintVisible, setIsHintVisible] = useState(false);
   const [isStarted, setIsStarted] = useState(false);
-  const [currentPosition, setCurrentPosition] = useState(0);
-  const [progress, setProgress] = useState(0);
+  //cardSetName
+  const { name } = useSelector(state => cardByIdSelector(state, cardSetId));
+  const flashCardArrayFromCardSetWithId = useSelector(state => flashCardArrayFromCardSetWithIdSelector(state, cardSetId));
+  const [maxRounds, setMaxRounds] = useState(3);
+  const [position, setPosition] = useState(0);
+  const [isHintVisible, setIsHintVisible] = useState(false);
 
-  // Temp array with learned words
-  let learned = [];
-
-  //TODO Переписать сигнатуру на cardSetById...
-  const cardSet = useSelector(state => cardByIdSelector(state, cardSetId));
-  const [cards, setCards] = useState(cardSet.flashCardArray);
-
-  const nextCardHandler = () => {
-    currentPosition < (cards.length - 1) ? setCurrentPosition(currentPosition + 1) : setCurrentPosition(0);
+  const initState = {
+    init: flashCardArrayFromCardSetWithId,
+    learned: [],
+    round: 0
   }
 
-  /**
- * Логика метода, если пользователь знает карточку, то эта карточка вычитается из массива
- * неизученных карточек, тем самым сокращаются размеры массива, пока он не станет равным 0
- */
-  const knowCardActionHandler = () => {
-    if (cards.length > 0) {
-      learned.push(cards[currentPosition]);
-      setCards(cards.filter(card => !learned.includes(card)));
+  const [cardSet, setCardSet] = useState(initState);
 
-      //FIXME Пересчитываем прогресс!
-      calculateCurrentProgress();
+  // Обнулить все значение!
+  const setInitStateHandler = () => {
+    setCardSet(initState);
+    setIsStarted(false);
+  }
+
+  useEffect(() => {
+    if (cardSet.init.length === 0) {
+      setCardSet({
+        ...cardSet,
+        init: cardSet.learned,
+        learned: [],
+        round: cardSet.round + 1
+      });
+    }
+  }, [cardSet])
+
+  /**
+   * Логика метода, если пользователь знает карточку, то эта карточка вычитается из массива
+   * неизученных карточек, тем самым сокращаются размеры массива, пока он не станет равным 0
+   */
+  const knowCardHandler = () => {
+    setCardSet({
+      ...cardSet,
+      learned: [cardSet.init[position], ...cardSet.learned],
+      init: cardSet.init.filter(card => card.id !== cardSet.init[position].id)
+    })
+    setPosition(0);
+  }
+
+  const dontKnowCardHandler = () => {
+    if (position < cardSet.init.length - 1) {
+      setPosition((prevPosition) => prevPosition + 1)
+    } else {
+      setPosition(0);
     }
   }
 
-  const calculateCurrentProgress = () => {
-    setProgress((cards.length - learned.length) / cards.length);
+  const getCurrentCard = () => {
+    return cardSet.init[position];
   }
 
-  const setInitialStateHandler = () => {
-    setIsStarted(false);
-    learned = [];
-    setCards(cardSet?.flashCardArray);
+  const toggleHintVisibleHandler = () => {
+    setIsHintVisible(!isHintVisible)
   }
 
   const navigateToCardListHandler = () => {
-    navigation.navigate(cardSet.name);
+    navigation.navigate(name);
   }
 
+  const getCurrentProgress = () => (
+    cardSet.round / maxRounds
+  )
+
   const showLearnCardViewElement = () => (
-    cards.length !== 0
-      ?
+    <Provider>
       <View style={styles.learnViewContainer}>
         <View style={styles.workArea}>
-          <ProgressBarComponent progress={progress} />
+          <ProgressBarComponent progress={getCurrentProgress()} />
+          <DialogComponent setMaxRounds={setMaxRounds} maxRounds={maxRounds}/>
           <View style={styles.cardContainer}>
             <CardSetItemComponent
-              item={cards[currentPosition]}
+              item={getCurrentCard()}
               isHintVisible={isHintVisible}
             />
           </View>
           <View style={styles.buttonsContainer}>
             <ButtonComponent
               style={[styles.action, { backgroundColor: "#5EBD6D" }]}
-              onClickHandler={knowCardActionHandler}
+              onClickHandler={knowCardHandler}
               name="I know it">
             </ButtonComponent>
             <ButtonComponent
               style={[styles.action, { backgroundColor: "#FD8344" }]}
-              onClickHandler={() => setIsHintVisible(!isHintVisible)}
+              onClickHandler={toggleHintVisibleHandler}
               name="Show me hint"
             >
             </ButtonComponent>
             <ButtonComponent
               style={[styles.action, { marginRight: 0, backgroundColor: "#FC1444" }]}
               name="I dont't know"
-              onClickHandler={nextCardHandler}>
+              onClickHandler={dontKnowCardHandler}>
             </ButtonComponent>
           </View>
         </View>
       </View>
-      :
-      <CongratulationComponent
-        setInitialStateHandler={setInitialStateHandler}
-        navigateToCardListHandler={navigateToCardListHandler}
-      />
+    </Provider>
   )
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
-      <ImgBackgroundComponent>
-        <View style={styles.container}>
-          {
-            isStarted
-              ?
-              showLearnCardViewElement()
-              :
-              <TipComponent
-                setIsStarted={setIsStarted}
-                navigateToCardListHandler={navigateToCardListHandler}
-              />
-          }
-        </View>
-      </ImgBackgroundComponent>
+      <View style={styles.container}>
+        {!isStarted ?
+          <TipComponent setIsStarted={setIsStarted} navigateToCardListHandler={navigateToCardListHandler} />
+          :
+          cardSet.round >= maxRounds
+            ?
+            <CongratulationComponent
+              setInitialStateHandler={setInitStateHandler}
+              navigateToCardListHandler={navigateToCardListHandler}
+            />
+            :
+            showLearnCardViewElement()
+        }
+      </View>
     </SafeAreaView>
   )
 }

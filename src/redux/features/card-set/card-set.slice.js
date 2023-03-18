@@ -193,6 +193,7 @@ export const cardEntityByFavoriteAndLearnedSelector = (state, favorite, learned)
   return state.card.cardEntity;
 }
 export const cardSetByIdSelector = (state, id) => state.cardSet.cardEntity.find(cardSet => id === cardSet.id);
+export const flashCardArrayFromCardSetWithIdSelector = (state, id) => cardSetByIdSelector(state, id).flashCardArray;
 
 //TODO Сделать более универсальным
 export const getSortedCardByCardSetSelector = state => {
