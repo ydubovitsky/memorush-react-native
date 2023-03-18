@@ -34,8 +34,7 @@ const CardSetListItem = ({ item, navigation }) => {
     <View style={styles.info}>
       <View style={styles.cardInfo}>
         <Text>Карточки: {flashCardArray?.length}</Text>
-        <Text>Категория: {cutStringIfLengthMoreThan(7, categoryName)}</Text>
-        <Text>Создан: {createdAt}</Text>
+        <Text>Категория: {cutStringIfLengthMoreThan(15, categoryName)}</Text>
         <Icon
           raised
           name='heart'
@@ -47,6 +46,7 @@ const CardSetListItem = ({ item, navigation }) => {
       </View>
       <View style={styles.cardDescription}>
         <Text>Описание: {cutStringIfLengthMoreThan(15, description) || "Заполню позже..."}</Text>
+        <Text>Создан: {createdAt}</Text>
       </View>
     </View>
   </View>
@@ -96,13 +96,18 @@ const styles = StyleSheet.create({
   },
   cardInfo: {
     flex: 2,
+    flexWrap: "wrap",
     width: '100%',
     flexDirection: "row",
+    justifyContent: 'space-between',
     alignItems: 'center', //Centered vertically,
-    justifyContent: 'space-around'
   },
   cardDescription: {
     flex: 1,
+    width: '100%',
+    flexDirection: "row",
+    alignItems: 'center', //Centered vertically,
+    justifyContent: 'space-between'
   }
 })
 
