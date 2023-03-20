@@ -24,7 +24,7 @@ const CardSetInputForm = ({ cardSetEntityFormInputHandler, values }) => {
 
   return (
     <View style={styles.container}>
-      <Text>CREATE A NEW FLASHCARD SET</Text>
+      <Text style={styles.title}>Создать новый набор карточек</Text>
       <TextInput
         mode="outlined"
         style={styles.input}
@@ -68,6 +68,10 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 10,
     padding: 10,
+  },
+  title: {
+    fontSize: 20,
+    marginBottom: 10
   },
   description: {
     minHeight: 100
