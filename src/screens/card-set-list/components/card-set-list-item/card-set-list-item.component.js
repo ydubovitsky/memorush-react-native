@@ -45,7 +45,7 @@ const CardSetListItem = ({ item, navigation }) => {
         />
       </View>
       <View style={styles.cardDescription}>
-        <Text>Описание: {cutStringIfLengthMoreThan(15, description) || "Заполню позже..."}</Text>
+        <Text>Описание: {cutStringIfLengthMoreThan(10, description) || "Заполню позже..."}</Text>
         <Text>Создан: {createdAt}</Text>
       </View>
     </View>
