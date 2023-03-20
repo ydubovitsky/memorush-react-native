@@ -77,7 +77,8 @@ const styles = StyleSheet.create({
   favoritesList: {
     flex: 4,
     padding: 10,
-    flexDirection: "row"
+    flexDirection: "row",
+    marginBottom: 10
   }
 })
 

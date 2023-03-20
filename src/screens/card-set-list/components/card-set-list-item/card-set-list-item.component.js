@@ -45,7 +45,7 @@ const CardSetListItem = ({ item, navigation }) => {
         />
       </View>
       <View style={styles.cardDescription}>
-        <Text>Описание: {cutStringIfLengthMoreThan(10, description) || "Заполню позже..."}</Text>
+        <Text style={{marginRight: 10}}>Описание: {cutStringIfLengthMoreThan(10, description) || "Заполню позже..."}</Text>
         <Text>Создан: {createdAt}</Text>
       </View>
     </View>
@@ -106,8 +106,9 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     flexDirection: "row",
-    alignItems: 'center', //Centered vertically,
-    justifyContent: 'space-between'
+    alignItems: 'flex-start', //Centered vertically,
+    justifyContent: 'space-between',
+    overflow: "hidden"
   }
 })
 
