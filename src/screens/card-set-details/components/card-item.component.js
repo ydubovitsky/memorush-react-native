@@ -19,7 +19,7 @@ const CardItemComponent = ({ item, navigation }) => {
           <Text style={styles.text}>{isFrontSide ? item.frontSide : item.backSide}</Text>
       </View>
       <View style={styles.info}>
-        <SpeakerIconComponent text={item.frontSide} />
+        <SpeakerIconComponent text={isFrontSide ? item.frontSide : item.backSide} />
       </View>
     </TouchableOpacity>
   );
