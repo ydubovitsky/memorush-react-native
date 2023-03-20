@@ -30,6 +30,7 @@ const FavoriteCardSetListComponent = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    minHeight: 105
   },
   favoritesPlaceholder: {
     flex: 1,
